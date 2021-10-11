@@ -90,6 +90,10 @@ export default function Register() {
         Already have an account? 
         <Link to="/"> Log In </Link>
       </div>
+      <div className="w-100 text-center mt-2">
+            test Dashboard
+            <Link to="/Dashboard"> Dashboard </Link>
+    </div>
     </div>
     </>
   );
