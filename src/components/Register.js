@@ -2,6 +2,8 @@ import { React, useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import   "../firebase";
 import { getDatabase, set, ref } from "firebase/database";
+import { Link } from 'react-router-dom';
+
 export default function Register() {
     
   //Props
@@ -28,6 +30,7 @@ export default function Register() {
 
   return (
     <>
+    <div className="w-100" style={{maxWidth: "400px"}}>
       <Card>
         <Card.Body>
           <h2>Register</h2>
@@ -84,8 +87,10 @@ export default function Register() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Already have an account? Log In
+        Already have an account? 
+        <Link to="/"> Log In </Link>
       </div>
+    </div>
     </>
   );
 }
