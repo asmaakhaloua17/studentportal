@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card,Container } from "react-bootstrap";
 import   "../firebase";
 import { getDatabase, set, ref } from "firebase/database";
 import { Link } from 'react-router-dom';
@@ -30,6 +30,7 @@ export default function Register() {
 
   return (
     <>
+        <Container className="d-flex align-item-center justify-content-center">
     <div className="w-100" style={{maxWidth: "400px"}}>
       <Card>
         <Card.Body>
@@ -95,6 +96,7 @@ export default function Register() {
             <Link to="/Dashboard"> Dashboard </Link>
     </div>
     </div>
+    </Container>
     </>
   );
 }

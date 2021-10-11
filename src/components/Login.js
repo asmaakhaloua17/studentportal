@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card,Container } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
 export default function LogIn() {
@@ -9,6 +9,7 @@ export default function LogIn() {
 
     return(
     <>
+    <Container className="d-flex align-item-center justify-content-center">
     <div className="w-100" style={{maxWidth: "400px"}}>
     <img src="logo512.png" class="rounded mx-auto d-block mb-3 mt-3" alt="tempImage" width = "100px"></img>
     <Card>
@@ -39,7 +40,7 @@ export default function LogIn() {
               ></Form.Control>
             </Form.Group>
             
-            <div class="d-flex justify-content-center">
+            <div className="d-flex justify-content-center">
               <Button className="w-75 mt-2" type="Button">
                 Login
               </Button>
@@ -54,6 +55,7 @@ export default function LogIn() {
             <Link to="/Register"> Register </Link>
     </div>
     </div>
+    </Container>
     </>
     )
 }

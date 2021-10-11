@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavDropdown, Navbar, Container,Nav } from "react-bootstrap";
 import   "../firebase";
 import { getDatabase, ref,get,child } from "firebase/database";
+import logo from "../img/logo-nav.png"
 export default class Sidenav extends Component {
    
     constructor(props) {
@@ -78,9 +79,9 @@ export default class Sidenav extends Component {
              
 
 <div id="slide-out" className="side-nav fixed">
-<Navbar bg="light" expand="lg">
+<Navbar bg="light" expand="lg" className="nav-portal">
   <Container>
-    <Navbar.Brand href="#home">Student portal</Navbar.Brand>
+    <Navbar.Brand href="#home"><img src={logo} alt="logo" className="nav-logo"></img></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">

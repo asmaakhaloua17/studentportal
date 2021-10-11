@@ -1,0 +1,38 @@
+body{
+    background-color: #E7E2ED;
+}
+.nav-portal{
+    background-color: #6200EE!important;
+}
+
+.nav-portal .nav-link {
+    color:#ffffff!important;
+}
+.theme_body
+{
+    padding-top: 37px;
+    background-color: #ffffff;
+    min-height: 637px;
+}
+
+.big-title {
+    margin-bottom: 3em;
+}
+h3.big_title {
+    font-size: 1.6em;
+    color: #6a4a97;
+    text-transform: uppercase;
+    position: relative;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid #6a4a97;
+}
+
+.row_nav {
+    background-color: #6200EE!important;
+}
+.nav-logo
+{
+    height: 50px;
+    width: 192px;
+}
