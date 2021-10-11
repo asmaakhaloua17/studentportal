@@ -8,12 +8,16 @@ export default class Sidenav extends Component {
     
         super(props);
        
-        this.state = {classList : []}
+        
+        this.state = {classList : [],assignmentList : []}
         }
         componentDidMount() {
             
             const dbRef = ref(getDatabase());
             let classList = [];
+            let assignmentList = [];
+
+            //get list of classes
             get(child(dbRef, `classes`)).then((snapshot) => {
               if (snapshot.exists()) {
                 snapshot.forEach(function(item) {
@@ -34,13 +38,40 @@ export default class Sidenav extends Component {
               console.error(error);
             }); 
           
+
+              //get list of assignments
+              get(child(dbRef, `assignments`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                  snapshot.forEach(function(item) {
+                      var itemVal = item.val();
+                      assignmentList.push(itemVal);
+                     console.log(itemVal.title);
+                  });
+                 
+                 
+                 this.setState({ assignmentList:assignmentList });
+              
+                } else {
+                  console.log("No data available");
+                }
+              }, {
+                  onlyOnce: true
+                }).catch((error) => {
+                console.error(error);
+              }); 
+            
         }
     render() {
         
-        
+        //create nav nodes for classes
         const listclasses = this.state.classList.map((class_item) =>
         
         <NavDropdown.Item href="#" key={class_item.classID}>{class_item.name}</NavDropdown.Item>
+    );  
+ //create nav nodes for assignments
+     const listassignments = this.state.assignmentList.map((assignment_item) =>
+        
+    <NavDropdown.Item href="#" key={assignment_item.assignmentID}>{assignment_item.title}</NavDropdown.Item>
     );  
         return (
          
@@ -59,7 +90,7 @@ export default class Sidenav extends Component {
            {listclasses} 
         </NavDropdown>
         <NavDropdown title="Assignments" id="basic-nav-dropdown">
-           {listclasses} 
+           {listassignments} 
         </NavDropdown>
         <Nav.Link href="#home">Attendance</Nav.Link>
       </Nav>
