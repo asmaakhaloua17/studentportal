@@ -3,7 +3,7 @@ import { Form, Button, Card,Container } from "react-bootstrap";
 import   "../firebase";
 import { getDatabase, set, ref } from "firebase/database";
 import { Link } from 'react-router-dom';
-
+import logo from "../img/logo001a.png"
 export default function Register() {
     
   //Props
@@ -32,9 +32,13 @@ export default function Register() {
     <>
         <Container className="d-flex align-item-center justify-content-center">
     <div className="w-100" style={{maxWidth: "400px"}}>
-      <Card>
+    <img src={logo} class="rounded mx-auto d-block mb-3 mt-3" alt="tempImage" ></img>
+      <Card  className="login">
         <Card.Body>
-          <h2>Register</h2>
+        <div class="shadow p-2 mb-3 bg-primary text-center text-white">
+              <h2>Register</h2>
+            </div>
+          <div className="body">
           <Form>
             <Form.Group id="firstname">
               <Form.Label>First Name</Form.Label>
@@ -85,12 +89,14 @@ export default function Register() {
               Sign Up
             </Button>
           </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
+          <div className="w-100 text-center mt-2">
         Already have an account? 
         <Link to="/"> Log In </Link>
       </div>
+          </div>
+        </Card.Body>
+      </Card>
+     
       <div className="w-100 text-center mt-2">
             test Dashboard
             <Link to="/Dashboard"> Dashboard </Link>

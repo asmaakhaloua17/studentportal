@@ -27,7 +27,17 @@ h3.big_title {
     font-weight: 700;
     border-bottom: 2px solid #6a4a97;
 }
-
+.login .card-body
+{
+    padding: 0rem!important;
+}
+.login .body{
+    padding: 1rem 1rem;
+}
+.login .shadow,.login .btn-primary
+{
+   background-color: #6200ee!important
+}
 .row_nav {
     background-color: #6200EE!important;
 }
