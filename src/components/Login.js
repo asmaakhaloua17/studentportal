@@ -12,7 +12,7 @@ export default function LogIn() {
     <>
     <Container className="d-flex align-item-center justify-content-center">
     <div className="w-100" style={{maxWidth: "400px"}}>
-    <img src={logo} class="rounded mx-auto d-block mb-3 mt-3" alt="tempImage" ></img>
+    <img  src={logo} className="logo mx-auto d-block mb-3 mt-3" alt="Portal logo" ></img>
     <Card className="login">
      
         <Card.Body>

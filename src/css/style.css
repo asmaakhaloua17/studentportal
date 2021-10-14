@@ -34,15 +34,29 @@ h3.big_title {
 .login .body{
     padding: 1rem 1rem;
 }
-.login .shadow,.login .btn-primary
+.login .shadow,.login .btn-primary,.btn-primary
 {
    background-color: #6200ee!important
 }
 .row_nav {
     background-color: #6200EE!important;
 }
+
 .nav-logo
 {
     height: 50px;
     width: 192px;
+}
+.logo{
+    height: 125px;
+}
+.login #action
+{
+padding-top: 10px;
+text-align: right;
+}
+
+.login #action button
+{
+margin-right:5px;
 }
