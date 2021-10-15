@@ -1,12 +1,46 @@
 import { React, useState } from "react";
 import { Form, Button, Card,Container } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import logo from "../img/logo001a.png"
+import { getDatabase, get, ref , child} from "firebase/database";
+import logo from "../img/logo001a.png";
+import { Redirect, Route } from 'react-router-dom';
+import Dashboard from "./Dashboard";
 
 export default function LogIn() {
 
     const [uEuid, setuEuid] = useState("");
     const [uPassword, setuPassword] = useState("");
+
+    function handleLoginUser() 
+    {
+      const dbRef = ref(getDatabase());
+
+      get(child(dbRef, "users/" + uEuid)).then((snapshot) => {
+        if (snapshot.exists()) 
+        {
+          if ( snapshot.child("password").val() == uPassword)
+          {
+            <Route exact path="/">
+            <Redirect to="/Dashboard" component={Dashboard}/>
+            </Route>
+            console.log("Correct password");
+          }
+          else
+          {
+            console.log("Incorrect password");
+            var error = document.getElementById("incorrectPassword");
+            error.textContent = "Incorrect Password. Please try again.";
+          }
+        } 
+        else 
+        {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
+
+    }//function handleLoginUser()
 
     return(
     <>
@@ -25,9 +59,9 @@ export default function LogIn() {
               <Form.Control
                 type="text"
                 required
-                /*onChange={(e) => {
+                onChange={(e) => {
                   setuEuid(e.target.value);
-                }}*/
+                }}
               ></Form.Control>
             </Form.Group>
 
@@ -36,14 +70,14 @@ export default function LogIn() {
               <Form.Control
                 type="password"
                 required
-                /*onChange={(e) => {
+                onChange={(e) => {
                   setuPassword(e.target.value);
-                }}*/
+                }}
               ></Form.Control>
             </Form.Group>
             
             <div className="d-flex justify-content-center">
-              <Button className="w-75 mt-2" type="Button">
+              <Button className="w-75 mt-2" type="Button" onClick={handleLoginUser}>
                 Submit
               </Button>
               
@@ -51,8 +85,11 @@ export default function LogIn() {
             <div className="w-100 text-center mt-2">
             Don't have an account?
             <Link to="/Register"> Register </Link>
-    </div>
             </div>
+
+            <div className="w-100 text-center mt-2 text-danger" id="incorrectPassword" ></div>
+            
+  </div>
         </Card.Body>
 
     </Card>
