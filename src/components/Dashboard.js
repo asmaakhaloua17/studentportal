@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import Footer from "./Footer";
 import Sidenav from "./Sidenav";
 import ListClasses from "./Classes/ListClasses";
+import Assignments from "./assignments/Assignments";
 export default class Dashboard extends Component {
   render() {
     return (
@@ -21,7 +22,7 @@ export default class Dashboard extends Component {
 <div class="big-title">
 		      <h3 class="big_title">Assignments</h3>
 			
-                <div> assignment component</div>
+                <div> <Assignments /></div>
 </div>
           </Row>
           <Row>

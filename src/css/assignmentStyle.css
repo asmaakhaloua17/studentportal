@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+p {
+    font-size: 0.75em;
+    padding: 10px;
+}
+
+#card {
+    width: 300px;
+    border: 1px solid rgb(237, 237, 237);
+    margin: 20px 10px;
+    border-radius:7px;
+    overflow: auto;
+    display: inline-block;
+}
+
+.title {
+    font-size: 0.75em;
+    padding: 10px 10px;
+    border-bottom: 1px solid rgb(237, 237, 237);
+    background-color: rgb(247, 247, 247);
+}
+
+.description {
+    font-size: 1em;
+    padding: 10px 10px;
+    display: inline;
+}
+
+.dueDate {
+    display: inline;
+    font-size: 0.5em;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 2px;
+    margin-bottom: 100px;
+}
+
+button {
+    float: right;
+    background-color: rgb(38, 217, 197);
+    border: none;
+    border-radius: 15px;
+    padding: 9px;
+    margin: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
+}
