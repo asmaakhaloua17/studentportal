@@ -13,13 +13,13 @@ export default class Dashboard extends Component {
           
         
           <Row className="theme_body">
-          <div class="big-title">
-		      <h3 class="big_title">Classes</h3>
+          <div className="big-title">
+		      <h3 className="big_title">Classes</h3>
 			
                 <div> <ListClasses></ListClasses></div>
 </div>
-<div class="big-title">
-		      <h3 class="big_title">Assignments</h3>
+<div className="big-title">
+		      <h3 className="big_title">Assignments</h3>
 			
                 <div> assignment component</div>
 </div>

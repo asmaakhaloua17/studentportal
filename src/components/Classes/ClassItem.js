@@ -7,7 +7,7 @@ export default class ClassITem extends Component {
     constructor(props) {
     
         super(props);
-       
+      
         
         this.state = {classList : []}
         }
@@ -49,7 +49,7 @@ export default class ClassITem extends Component {
             this.state.classList.map((class_item) =>
                    <div>
                 
-                <Card style={{ width: '18rem','margin-right': '20px' }}>
+                <Card style={{ width: '18rem','marginRight': '20px' }}>
   <Card.Img variant="top" src={logo} />
   <Card.Body>
     <Card.Title>{class_item.name}</Card.Title>
