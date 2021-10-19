@@ -60,3 +60,12 @@ text-align: right;
 {
 margin-right:5px;
 }
+.has-error
+{
+    color:red;
+}
+.class_img
+{
+    height: 200px!important;
+
+}

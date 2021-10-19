@@ -1,16 +1,18 @@
 import { initializeApp } from 'firebase/app';
 
-const firebaseConfig ={
 
-    apiKey:process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain:process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    databaseURL:process.env.REACT_APP_FIREBASE_DATABASE,
-    storageBucket:process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDXkzLfPAgUllqviplE_qiQOO06EhCf1tU",
+    authDomain: "student-portal-prod-7827d.firebaseapp.com",
+    databaseURL: "https://student-portal-prod-7827d-default-rtdb.firebaseio.com",
+    projectId: "student-portal-prod-7827d",
+    storageBucket: "student-portal-prod-7827d.appspot.com",
+    messagingSenderId: "672147118793",
+    appId: "1:672147118793:web:e2317e9719656541c84b18"
+  };
   
-};
+
 
   const app = initializeApp(firebaseConfig);
 

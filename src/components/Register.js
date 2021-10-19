@@ -1,124 +1,250 @@
-import { React, useState } from "react";
+import { React, Component } from "react";
 import { Form, Button, Card, Container } from "react-bootstrap";
 import "../firebase";
 import { getDatabase, set, ref } from "firebase/database";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import logo from "../img/logo001a.png";
-export default function Register() {
+import bcrypt from "bcryptjs";
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
+export default class Register extends Component {
+  
   //Props
-  const [uFirstName, setuFirstName] = useState("");
-  const [uEuid, setuEuid] = useState("");
-  const [uDateOfBirth, setuDateOfBirth] = useState("");
-  const [uPassword, setuPassword] = useState("");
+  constructor(props) {
+    super(props);
 
-  function handleAddUser() {
-    const db = getDatabase();
-    set(ref(db, "users/" + uEuid), {
-      euid: uEuid,
-      firstname: uFirstName,
-      dateofbirth: uDateOfBirth,
-      password: uPassword,
-    })
-      .then(() => {
-        console.log("Data saved successfully!");
-      })
-      .catch((error) => {
-        console.log("Data failed!" + error);
-      });
+    this.state = {
+      uFirstName: "",
+      uEuid: "",
+      uDateOfBirth: "",
+      uPassword: "",
+      uCPassword: "",
+      formErrors: {
+        dateOfBirth: "",
+        password: "",
+        passwordConfirm: "",
+        firstname: "",
+        euid: "",
+      },
+      dateOfBirthValid: false,
+      passwordValid: false,
+      formValid: false,
+    };
   }
 
-  return (
-    <>
-      <Container className="d-flex align-item-center justify-content-center">
-        <div className="w-100" style={{ maxWidth: "400px" }}>
-          <img
-            src={logo}
-            className="logo mx-auto d-block mb-3 mt-3"
-            alt="Portal logo"
-          ></img>
-          <Card className="login">
-            <Card.Body>
-              <div class="shadow p-2 mb-3 bg-primary text-center text-white">
-                <h2>Register</h2>
-              </div>
-              <div className="body">
-                <Form>
-                  <Form.Group id="firstname">
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={uFirstName}
-                      required
-                      onChange={(e) => {
-                        setuFirstName(e.target.value);
-                      }}
-                    ></Form.Control>
-                  </Form.Group>
-                  <Form.Group id="euid">
-                    <Form.Label>EUID</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      onChange={(e) => {
-                        setuEuid(e.target.value);
-                      }}
-                    ></Form.Control>
-                  </Form.Group>
-                  <Form.Group id="date-of-birth">
-                    <Form.Label>Date of Birth</Form.Label>
-                    <Form.Control
-                      type="text"
-                      required
-                      onChange={(e) => {
-                        setuDateOfBirth(e.target.value);
-                      }}
-                    ></Form.Control>
-                  </Form.Group>
-                  <Form.Group id="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      required
-                      onChange={(e) => {
-                        setuPassword(e.target.value);
-                      }}
-                    ></Form.Control>
-                  </Form.Group>
-                  <Form.Group id="password-confirm">
-                    <Form.Label>Password Confirmation</Form.Label>
-                    <Form.Control type="password" required></Form.Control>
-                  </Form.Group>
-                  <Form.Group id="action">
-                  <Button
-                    
-                    type="Button" variant="secondary"  size="sm"
-                    onClick={handleAddUser}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    className="btn-secondary"  size="sm"
-                    type="Button"
-                    onClick={handleAddUser}
-                  >
-                    Sign Up
-                  </Button>
-                  </Form.Group>
-                </Form>
-                <div className="w-100 text-center mt-2">
-                  Already have an account?
-                  <Link to="/"> Log In </Link>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
+  handleAddUser = () => {
+ let errorlist ="";
+    //validate
+    if (this.state.uEuid.length < 6) {
+     
+      errorlist += "\n Please enter euid : it is too short.";
+     
+    }
+    if (this.state.uFirstName.length === 0) {
+    
+      errorlist += "\n Please enter FirstName : it is too short.";
+    } else {
+      const db = getDatabase();
+      bcrypt.hash(this.state.uPassword, 12).then((hashpassword) => {
+        set(ref(db, "users/" + this.state.uEuid), {
+          euid: this.state.uEuid,
+          firstname: this.state.uFirstName,
+          dateofbirth: this.state.uDateOfBirth,
+          password: hashpassword,
+        })
+          .then(() => {
+          
+            this.props.history.push("/",{ state: 'pass'});
+          })
+          .catch((error) => {
+            console.log("Data failed!" + error);
+          });
+      });
+    }
+    var error = document.getElementById("errorMessage");
+    error.textContent = errorlist;
+  };
+  handleUserInput = (e) => {
+    const name = e.target.name;
 
-          <div className="w-100 text-center mt-2">
-            test Dashboard
-            <Link to="/Dashboard"> Dashboard </Link>
+    const value = e.target.value;
+    // console.log("name" +name + value);
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
+  };
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let dbValid = this.state.uDateOfBirth;
+    let passwordValid = this.state.uPassword;
+    let firstnameValid = this.state.uFirstName;
+    let euidValid = this.state.uEuid;
+
+    switch (fieldName) {
+      case "uDateOfBirth":
+        dbValid = value.match(
+          /^(((19|20)\d\d))-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$/
+        );
+
+        fieldValidationErrors.dateOfBirth = dbValid ? "" : " is invalid";
+
+        this.setState({
+          dateOfBirthValid: fieldValidationErrors.dateOfBirth.length === 0,
+        });
+        console.log("dateOfBirthValid :" + this.state.dateOfBirthValid);
+        break;
+      case "uCPassword":
+        passwordValid = this.state.uPassword === value;
+
+        fieldValidationErrors.passwordConfirm = passwordValid
+          ? ""
+          : " password not match";
+        this.setState({ passwordValid: passwordValid });
+        break;
+      case "uPassword":
+        passwordValid = value.length >= 6;
+        fieldValidationErrors.password = passwordValid ? "" : " is too short";
+        break;
+      case "uFirstName":
+        firstnameValid = value.length > 0;
+
+        fieldValidationErrors.firstname = firstnameValid
+          ? ""
+          : " can not be empty";
+        break;
+      case "uEuid":
+        euidValid = value.length >= 6;
+       // console.log("euidValid" + euidValid);
+        fieldValidationErrors.euid = euidValid ? "" : " is too short";
+        break;
+      default:
+        break;
+    }
+    this.setState({ formErrors: fieldValidationErrors }, this.validateForm);
+  }
+  validateForm() {
+   // console.log( "validate : " + this.state.dateOfBirthValid && this.state.passwordValid );
+    this.setState({
+      formValid: this.state.dateOfBirthValid && this.state.passwordValid,
+    });
+  }
+  errorClass(error) {
+    // console.log(error);
+    return error.length === 0 ? "" : "has-error";
+  }
+
+  render() {
+    return (
+      <>
+        <Container className="d-flex align-item-center justify-content-center">
+          <div className="w-100" style={{ maxWidth: "400px" }}>
+            <img
+              src={logo}
+              className="logo mx-auto d-block mb-3 mt-3"
+              alt="Portal logo"
+            ></img>
+            <Card className="login">
+              <Card.Body>
+                <div class="shadow p-2 mb-3 bg-primary text-center text-white">
+                  <h2>Register</h2>
+                </div>
+                <div className="body">
+                <div className="w-100 text-center mt-2 text-danger" id="errorMessage" ></div>
+                  <Form>
+                    <Form.Group
+                      id="firstname"
+                      className={`${this.errorClass(
+                        this.state.formErrors.firstname
+                      )}`}
+                    >
+                      <Form.Label>First Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="uFirstName"
+                        required
+                        onChange={this.handleUserInput}
+                      ></Form.Control>
+                    </Form.Group>
+                    <Form.Group
+                      id="euid"
+                      className={`${this.errorClass(
+                        this.state.formErrors.euid
+                      )}`}
+                    >
+                      <Form.Label>EUID</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="uEuid"
+                        required
+                        onChange={this.handleUserInput}
+                      ></Form.Control>
+                    </Form.Group>
+                    <Form.Group
+                      id="date-of-birth"
+                      className={`${this.errorClass(
+                        this.state.formErrors.dateOfBirth
+                      )}`}
+                    >
+                      <Form.Label>Date of Birth</Form.Label>
+                      <Form.Control
+                        type="date"
+                        name="uDateOfBirth"
+                        required
+                        onChange={this.handleUserInput}
+                      ></Form.Control>
+                    </Form.Group>
+                    <Form.Group
+                      id="password"
+                      className={`${this.errorClass(
+                        this.state.formErrors.password
+                      )}`}
+                    >
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="uPassword"
+                        required
+                        onChange={this.handleUserInput}
+                      ></Form.Control>
+                    </Form.Group>
+                    <Form.Group
+                      id="password-confirm"
+                      className={`${this.errorClass(
+                        this.state.formErrors.passwordConfirm
+                      )}`}
+                    >
+                      <Form.Label>Password Confirmation</Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="uCPassword"
+                        required
+                        onChange={this.handleUserInput}
+                      ></Form.Control>
+                    </Form.Group>
+                    <Form.Group id="action">
+                  
+                      <Button
+                        className="w-100 btn-secondary"
+                        size="lm"
+                        type="Button"
+                        onClick={this.handleAddUser}
+                        disabled={!this.state.formValid}
+                      >
+                        Sign Up
+                      </Button>
+                    </Form.Group>
+                  </Form>
+                  <div className="w-100 text-center mt-2">
+                    Already have an account?
+                    <Link to="/"> Log In </Link>
+                  </div>
+                
+                </div>
+              </Card.Body>
+            </Card>
           </div>
-        </div>
-      </Container>
-    </>
-  );
+        </Container>
+      </>
+    );
+  }
 }
