@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database";
 import logo from "../../img/course_card-2.png"
+import {Link} from 'react-router-dom';
 
 export default class ClassItem extends Component {
     constructor(props) {
@@ -54,7 +55,9 @@ export default class ClassItem extends Component {
     <Card.Text>
     {class_item.description}
     </Card.Text>
-    <Button variant="primary">More</Button>
+    <Button variant="primary"><Link to={`/classDetails/${class_item.classID}`}>
+            More
+          </Link></Button>
   </Card.Body>
 </Card>
             </div>

@@ -5,7 +5,7 @@ body{
     background-color: #6200EE!important;
 }
 
-.nav-portal .nav-link {
+.nav-portal .nav-link, .nav-portal .nav-link a {
     color:#ffffff!important;
 }
 .theme_body
@@ -68,4 +68,15 @@ margin-right:5px;
 {
     height: 200px!important;
 
+}
+
+.card-body a {
+
+    text-decoration: none;
+   
+}
+.theme_body .active
+{
+    background-color: #76717e;
+    color: white;
 }
