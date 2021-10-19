@@ -55,7 +55,7 @@ export default class ClassItem extends Component {
     <Card.Text>
     {class_item.description}
     </Card.Text>
-    <Button variant="primary"><Link to={`/classDetails/${class_item.classID}`}>
+    <Button variant="primary class-more-btn"><Link to={`/classDetails/${class_item.classID}`}>
             More
           </Link></Button>
   </Card.Body>

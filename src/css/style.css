@@ -70,13 +70,18 @@ margin-right:5px;
 
 }
 
-.card-body a {
+.class .card-body a {
 
     text-decoration: none;
-   
+
 }
 .theme_body .active
 {
     background-color: #76717e;
     color: white;
+}
+.class-more-btn a
+{
+    color: #ffffff;
+    text-decoration: none;
 }

@@ -44,7 +44,7 @@ export default class ClassDetails extends Component {
 
   render() {
     return (
-      <div>
+      <div className="class">
         <Sidenav />
         <Container>
           <Row className="theme_body">
