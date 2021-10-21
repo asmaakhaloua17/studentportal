@@ -4,6 +4,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database";
 import {Link} from 'react-router-dom';
+import ListRessources from './Ressources/ListRessources';
 
 export default class ModuleItem extends Component {
   constructor(props) {
@@ -54,12 +55,12 @@ export default class ModuleItem extends Component {
         return (
            
             this.state.moduleList.map((module_item) =>
-                   <div>
+                   <div className="modules">
            <Accordion defaultActiveKey="0" flush>
   <Accordion.Item eventKey="0">
     <Accordion.Header>{module_item.title}</Accordion.Header>
     <Accordion.Body>
-  ressources
+  <ListRessources moduleID={module_item.moduleID}></ListRessources>
     </Accordion.Body>
   </Accordion.Item>
   </Accordion>

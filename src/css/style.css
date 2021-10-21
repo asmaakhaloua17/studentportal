@@ -85,8 +85,29 @@ margin-right:5px;
     color: #ffffff;
     text-decoration: none;
 }
-.accordion-button
+.modules .accordion-button
 {
     color: black;
     background-color: #f1eff4;
+    margin: 0px;
 }
+
+.modules .accordion-button:not(.collapsed) {
+    color: #000;
+    border-top: 1px solid #c6c1c1;
+    border-bottom: 1px solid #c6c1c1;
+    background-color: #eaecee;
+   box-shadow: none;
+}
+.modules .accordion-item{
+margin-bottom: 10px;
+border-bottom: 1px solid #c6c1c1 !important;
+border-left: 1px solid #c6c1c1;
+border-right: 1px solid #c6c1c1;
+}
+.ressources .accordion-item{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #c6c1c1 !important;
+    border-left: 0;
+    border-right: 0;
+    }
