@@ -1,0 +1,70 @@
+import React, { Component } from 'react'
+import Accordion from 'react-bootstrap/Accordion'
+
+import "../../firebase";
+import { getDatabase, ref, get, child } from "firebase/database";
+import {Link} from 'react-router-dom';
+
+export default class ModuleItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {moduleList : [] };
+
+        }
+        componentDidMount() {
+            
+            const dbRef = ref(getDatabase());
+            let moduleList = [];
+           
+
+    //get list of modules
+    get(child(dbRef, `modules`)).then((snapshot) => {
+     
+      let classID = this.props.classID;
+      console.log("searching for modules"+classID);
+      if (snapshot.exists()) {
+        snapshot.forEach(function (item) {
+        
+          var itemVal = item.val();
+         // console.log("found 1"+itemVal.classID);
+          if(itemVal.classID == classID)
+          {
+            console.log("found :"+classID);
+            moduleList.push(itemVal);
+          }
+        
+         
+        });
+        this.setState({ moduleList: moduleList });
+      } else {
+        console.log("No data available");
+      }
+    }, {
+      onlyOnce: true
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+
+            
+        
+    render() {
+        
+       
+        return (
+           
+            this.state.moduleList.map((module_item) =>
+                   <div>
+           <Accordion defaultActiveKey="0" flush>
+  <Accordion.Item eventKey="0">
+    <Accordion.Header>{module_item.title}</Accordion.Header>
+    <Accordion.Body>
+  ressources
+    </Accordion.Body>
+  </Accordion.Item>
+  </Accordion>
+            </div>
+               ));
+        
+    }
+}

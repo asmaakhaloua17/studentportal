@@ -85,3 +85,8 @@ margin-right:5px;
     color: #ffffff;
     text-decoration: none;
 }
+.accordion-button
+{
+    color: black;
+    background-color: #f1eff4;
+}
