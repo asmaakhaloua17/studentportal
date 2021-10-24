@@ -8,6 +8,7 @@ import ClassDetails from "./Classes/ClassDetails";
 import RessourceDetail from "./Modules/Ressources/RessourceDetail";
 import DashboardTeacher from "./DashboardTeacher";
 import ClassNew from "./Classes/ClassNew";
+import Grades from "./Grades/Grades";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/classDetails/:classId" component={ClassDetails}/>
       <Route path="/newClass/:userId" component={ClassNew}/>
       <Route path="/ressourceDetails/:ressourceId/:moduleId/:classId" component={RessourceDetail}/>
+      <Route path="/Grades" component={Grades}/>
       <Route component={Error} />
     </Switch>
 
