@@ -75,31 +75,31 @@ margin-right:5px;
     text-decoration: none;
 
 }
-.theme_body .active
+ .theme_body  .class-nav .active
 {
     background-color: #76717e;
     color: white;
 }
-.class-more-btn a
+.class-more-btn a ,.white,.white:hover
 {
     color: #ffffff;
     text-decoration: none;
 }
-.modules .accordion-button
+.modules .accordion-button, .ressources .accordion-button
 {
     color: black;
     background-color: #f1eff4;
     margin: 0px;
 }
 
-.modules .accordion-button:not(.collapsed) {
+.modules .accordion-button:not(.collapsed), .ressources .accordion-button:not(.collapsed) {
     color: #000;
     border-top: 1px solid #c6c1c1;
     border-bottom: 1px solid #c6c1c1;
     background-color: #eaecee;
    box-shadow: none;
 }
-.modules .accordion-item{
+.modules .accordion-item, .ressources .accordion-item{
 margin-bottom: 10px;
 border-bottom: 1px solid #c6c1c1 !important;
 border-left: 1px solid #c6c1c1;
@@ -111,3 +111,19 @@ border-right: 1px solid #c6c1c1;
     border-left: 0;
     border-right: 0;
     }
+
+.ressources .fa
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+}
+
+.ressources a {
+    color: black;
+    text-decoration: none;
+}
+#bg-nested-dropdown{
+    background-color:#49a097!important;
+    border: 1px solid #49a097!important;
+}

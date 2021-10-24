@@ -11,7 +11,7 @@ export default class ListRessources extends Component {
         return (
            <div>
 
-                <Ressourcetem moduleID={this.props.moduleID}></Ressourcetem>
+                <Ressourcetem classID ={this.props.classID} moduleID={this.props.moduleID}></Ressourcetem>
      
            </div>
           

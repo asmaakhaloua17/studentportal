@@ -3,7 +3,7 @@ import Accordion from 'react-bootstrap/Accordion'
 
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database";
-import {Link} from 'react-router-dom';
+
 import ListRessources from './Ressources/ListRessources';
 
 export default class ModuleItem extends Component {
@@ -28,9 +28,9 @@ export default class ModuleItem extends Component {
         
           var itemVal = item.val();
          // console.log("found 1"+itemVal.classID);
-          if(itemVal.classID == classID)
+          if(itemVal.classID == classID && itemVal.publishedID == 1)
           {
-            console.log("found :"+classID);
+           
             moduleList.push(itemVal);
           }
         
@@ -60,7 +60,7 @@ export default class ModuleItem extends Component {
   <Accordion.Item eventKey="0">
     <Accordion.Header>{module_item.title}</Accordion.Header>
     <Accordion.Body>
-  <ListRessources moduleID={module_item.moduleID}></ListRessources>
+  <ListRessources  classID={this.props.classID} moduleID={module_item.moduleID}></ListRessources>
     </Accordion.Body>
   </Accordion.Item>
   </Accordion>

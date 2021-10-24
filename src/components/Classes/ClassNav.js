@@ -13,7 +13,7 @@ export default class ClassNav extends Component {
         
        
         return (
-            <Nav defaultActiveKey="/" className="flex-column">
+            <Nav defaultActiveKey="/" className="class-nav flex-column">
             <Nav.Link href="/">Modules</Nav.Link>
             <Nav.Link eventKey="link-1">Grades</Nav.Link>
             <Nav.Link eventKey="link-2">Assignments</Nav.Link>
