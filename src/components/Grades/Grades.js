@@ -5,6 +5,7 @@ import ClassNav from "../Classes/ClassNav";
 import { Container, Row, Col , Table, Card} from "react-bootstrap";
 import { getDatabase, ref, get, child } from "firebase/database";
 //import { Link, useHistory } from "react-router-dom";
+import "../../css/style.css";
 
 
 export default class Grades extends Component {
@@ -57,7 +58,7 @@ export default class Grades extends Component {
             <h3 className="big_title">{this.state.classTitle} Section {this.state.classSection}</h3>
             <Row>
             <Col lg= {6} md ={12}>
-                <Table striped bordered hover size ="sm" class="table">
+                <Table striped hover size ="sm" className="gradesTable">
                     <thead>
                         <tr>
                             <th>Assignment Name</th>
