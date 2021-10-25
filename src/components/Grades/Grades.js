@@ -1,11 +1,10 @@
 import { React, useState, Component }  from "react";
 import Sidenav from "../Sidenav";
-//import { Link, useHistory } from "react-router-dom";
-//import { render } from "@testing-library/react";
-import { Container, Row, Col , Table, Card} from "react-bootstrap";
 import Footer from "../Footer";
 import ClassNav from "../Classes/ClassNav";
+import { Container, Row, Col , Table, Card} from "react-bootstrap";
 import { getDatabase, ref, get, child } from "firebase/database";
+//import { Link, useHistory } from "react-router-dom";
 
 
 export default class Grades extends Component {
@@ -57,7 +56,7 @@ export default class Grades extends Component {
             <Col>
             <h3 className="big_title">{this.state.classTitle} Section {this.state.classSection}</h3>
             <Row>
-            <Col md={6}>
+            <Col lg= {6} md ={12}>
                 <Table striped bordered hover size ="sm" class="table">
                     <thead>
                         <tr>
@@ -89,7 +88,7 @@ export default class Grades extends Component {
                     </tbody>
                 </Table>
             </Col>
-            <Col md={4}>
+            <Col lg={{ span: 4 , offset: 1 }} md={12}>
                 <Card>
                 <h4>Grade Distribution</h4>
                 

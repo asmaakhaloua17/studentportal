@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ListGroup from "react-bootstrap/Accordion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../firebase";
-import "font-awesome/css/font-awesome.min.css";
+//import "font-awesome/css/font-awesome.min.css";
 import { getDatabase, ref, get, child } from "firebase/database";
 import { Link } from "react-router-dom";
 

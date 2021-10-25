@@ -5,7 +5,7 @@ import Footer from "../../Footer";
 import Sidenav from "../../Sidenav";
 import ClassNav from "../../Classes/ClassNav";
 import "../../../firebase";
-import "font-awesome/css/font-awesome.min.css";
+//import "font-awesome/css/font-awesome.min.css";
 import { getDatabase, ref, get, child } from "firebase/database";
 import { Link } from "react-router-dom";
 
