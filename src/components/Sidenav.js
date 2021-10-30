@@ -86,7 +86,7 @@ export default class Sidenav extends Component {
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link href="#"><Link to={`/Dashboard`}>
+        <Nav.Link href="#"><Link to={`/Dashboard/`+this.props.euid}>
             Dashboard
           </Link></Nav.Link>
        

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ListGroup from "react-bootstrap/Accordion";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import "../../../firebase";
-//import "font-awesome/css/font-awesome.min.css";
+import "font-awesome/css/font-awesome.min.css";
 import { getDatabase, ref, get, child } from "firebase/database";
 import { Link } from "react-router-dom";
 
@@ -59,7 +59,7 @@ export default class RessourceItem extends Component {
 
             {ressource_item.typeID === 1 ? (
               <Link
-                to={`/ressourceDetails/${ressource_item.ressourceID}/${this.props.moduleID}/${this.props.classID}`}
+                to={`/ressourceDetails/${ressource_item.ressourceID}/${this.props.moduleID}/${this.props.classID}/${this.props.euid}`}
               >
                 {ressource_item.title}{" "}
               </Link>

@@ -19,13 +19,14 @@ export default class DashboardTeacher extends Component {
 <Alert key="welcome" variant="secondary">
 <h4>Welcome {this.props.match.params.firstName}</h4>
 <p>
+
 Aww yeah, you successfully read this important alert message.
 </p>
 <hr/>
 <div className="d-flex justify-content-end">
 <Button variant="primary"><Link to={`/rollCall}`}  className="white">
 <i class="fa fa-hand-paper-o" aria-hidden="true"></i> Roll Call
-          </Link></Button> <Button variant="primary"><Link className="white" to={`/newClass/${this.props.match.params.userID}`}>
+          </Link></Button> <Button variant="primary"><Link className="white" to={`/newClass/${this.props.match.params.euid}`}>
           <i class="fa fa-plus-circle" aria-hidden="true"></i> New Class
           </Link></Button>
         </div>
@@ -38,7 +39,7 @@ Aww yeah, you successfully read this important alert message.
           <div className="big-title">
 		      <h3 className="big_title">Classes</h3>
 			
-                <div> <ListClasses role="teacher"></ListClasses></div>
+                <div> <ListClasses role="teacher" euid={this.props.match.params.euid}></ListClasses></div>
 </div>
 
           </Row>

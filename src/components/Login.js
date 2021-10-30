@@ -29,7 +29,7 @@ export default function LogIn() {
             function (err, result) {
               if (result) {
                 console.log("password same" + result);
-                history.push("/Dashboard");
+                history.push("/Dashboard/"+ uEuid);
                 console.log("Correct password");
               }
               // if password does not match, error messages displayed

@@ -60,7 +60,7 @@ export default class ModuleItem extends Component {
   <Accordion.Item eventKey="0">
     <Accordion.Header>{module_item.title}</Accordion.Header>
     <Accordion.Body>
-  <ListRessources  classID={this.props.classID} moduleID={module_item.moduleID}></ListRessources>
+  <ListRessources  classID={this.props.classID} moduleID={module_item.moduleID} euid={this.props.euid}></ListRessources>
     </Accordion.Body>
   </Accordion.Item>
   </Accordion>

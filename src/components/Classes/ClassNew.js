@@ -36,7 +36,7 @@ export default class ClassNew extends Component {
       section: "",
       session: 2,
       students: [],
-      teacherID: this.props.match.params.userId,
+      teacherID: this.props.match.params.euid,
     };
   }
 
@@ -96,7 +96,7 @@ export default class ClassNew extends Component {
       section: this.state.section,
       session: this.state.session,
       students: this.state.studentsID,
-      teacherID: this.props.match.params.userId,
+      teacherID: this.props.match.params.euid,
     }).then(() => {
           
       window.location.reload(false);

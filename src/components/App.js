@@ -17,12 +17,12 @@ function App() {
     <Switch>
       <Route path="/" component={Login} exact/>
       <Route path="/Register" component={Register}/>
-      <Route path="/Dashboard" component={Dashboard}/>
-      <Route path="/DashboardTeacher/:firstName/:userID" component={DashboardTeacher}/>
-      <Route path="/classDetails/:classId" component={ClassDetails}/>
-      <Route path="/newClass/:userId" component={ClassNew}/>
-      <Route path="/ressourceDetails/:ressourceId/:moduleId/:classId" component={RessourceDetail}/>
-      <Route path="/Grades" component={Grades}/>
+      <Route path="/Dashboard/:euid" component={Dashboard}/>
+      <Route path="/DashboardTeacher/:firstName/:euid" component={DashboardTeacher}/>
+      <Route path="/classDetails/:classId/:euid" component={ClassDetails}/>
+      <Route path="/newClass/:euid" component={ClassNew}/>
+      <Route path="/ressourceDetails/:ressourceId/:moduleId/:classId/:euid" component={RessourceDetail}/>
+      <Route path="/Grades/:classId/:euid" component={Grades}/>
       <Route component={Error} />
     </Switch>
 

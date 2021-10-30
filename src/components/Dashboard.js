@@ -8,7 +8,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-             <Sidenav />
+            <Sidenav euid={this.props.match.params.euid}/>
         <Container>
         
           
@@ -16,8 +16,8 @@ export default class Dashboard extends Component {
           <Row className="theme_body">
           <div className="big-title">
 		      <h3 className="big_title">Classes</h3>
-			
-                <div> <ListClasses></ListClasses></div>
+     
+                <div> <ListClasses role="student" euid= {this.props.match.params.euid}></ListClasses></div>
 </div>
 <div className="big-title">
 		      <h3 className="big_title">Assignments</h3>

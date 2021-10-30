@@ -42,16 +42,17 @@ export default class ClassDetails extends Component {
   render() {
     return (
       <div className="class">
-        <Sidenav />
+    
+       <Sidenav euid={this.props.match.params.euid}/>
         <Container>
           <Row className="theme_body">
             <Col xs lg="2">
-             
-              <ClassNav></ClassNav>
+          
+              <ClassNav classId={this.props.match.params.classId} euid={this.props.match.params.euid}></ClassNav>
             </Col>
             <Col> <h3 className="big_title">{this.state.classTitle} Section {this.state.classSection}</h3>
            
-            <ListModules classID={this.props.match.params.classId}></ListModules>
+            <ListModules classID={this.props.match.params.classId} euid={this.props.match.params.euid}></ListModules>
             </Col>
           </Row>
           <Row>

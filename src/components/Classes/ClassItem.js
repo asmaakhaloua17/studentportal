@@ -21,11 +21,16 @@ export default class ClassItem extends Component {
 
     //get list of classes
     get(child(dbRef, `classes`)).then((snapshot) => {
+      let euid = this.props.euid;
+      console.log(`object`,   this.props.euid);
       if (snapshot.exists()) {
         snapshot.forEach(function (item) {
           var itemVal = item.val();
+          console.log(" euid:"+ euid +  itemVal.students+ itemVal.students.includes(euid));
+          if(itemVal.teacherID == euid || itemVal.students.includes(euid)){
           classList.push(itemVal);
-          console.log(itemVal.classID);
+         
+          }
         });
         this.setState({ classList: classList });
       } else {
@@ -55,7 +60,7 @@ export default class ClassItem extends Component {
     <Card.Text>
     {class_item.description}
     </Card.Text>
-    <Button variant="primary class-more-btn"><Link to={`/classDetails/${class_item.classID}`}>
+    <Button variant="primary class-more-btn"><Link to={`/classDetails/${class_item.classID}/${this.props.euid}`}>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>  Access
           </Link></Button>
           {this.props.role === "teacher" ? (

@@ -52,28 +52,27 @@ export default class RessourceDetail extends Component {
   render() {
     return (
       <div className="class">
-        <Sidenav />
+        {this.props.euid}
+       <Sidenav euid={this.props.match.params.euid}/>
         <Container>
           <Row className="theme_body">
             <Col xs lg="2">
-              <ClassNav></ClassNav>
+              <ClassNav  euid={this.props.match.params.euid} classId={this.props.match.params.classId}></ClassNav>
             </Col>
             <Col>
               <div className="ressources">
                 <Breadcrumb>
-                  <Breadcrumb.Item>
-                    <Link to={`/Dashboard`}>Dashboard</Link>
-                  </Breadcrumb.Item>
+               
                   <Breadcrumb.Item>
                     <Link
-                      to={`/classDetails/${this.props.match.params.classId}`}
+                      to={`/classDetails/${this.props.match.params.classId}/${this.props.match.params.euid}`}
                     >
                       Class
                     </Link>
                   </Breadcrumb.Item>
                   <Breadcrumb.Item>
                     <Link
-                      to={`/classDetails/${this.props.match.params.classId}`}
+                      to={`/classDetails/${this.props.match.params.classId}/${this.props.match.params.euid}`}
                     >
                       Module {this.props.match.params.moduleId}
                     </Link>

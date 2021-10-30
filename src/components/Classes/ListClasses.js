@@ -11,7 +11,8 @@ export default class ListClasses extends Component {
        
         return (
             <CardGroup>
-                <ClassItem role={this.props.role}></ClassItem>
+       
+                <ClassItem role={this.props.role} euid={this.props.euid}></ClassItem>
             </CardGroup>
 
 
