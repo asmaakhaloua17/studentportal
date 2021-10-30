@@ -9,13 +9,13 @@ import {
 } from "react-bootstrap";
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database";
-import { Link } from "react-router-dom";
+
 
 export default class ManageClasses extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { classList: [], show: false, openedDialog: -1 };
+    this.state = { classList: [], show: false, openedDialog: -1,nb_classes : 0 };
   }
 
   openModal = (classid) => {
@@ -32,17 +32,25 @@ export default class ManageClasses extends Component {
   componentDidMount() {
     const dbRef = ref(getDatabase());
     let classList = [];
-
+    let teacher = this.props.teacherID;
+  let nb_classes = 0;
     //get list of classes
     get(child(dbRef, `classes`))
       .then(
         (snapshot) => {
           if (snapshot.exists()) {
             snapshot.forEach(function (item) {
+              nb_classes ++;
               var itemVal = item.val();
-              classList.push(itemVal);
-              console.log(itemVal.classID);
+              console.log("Teacher ID"+itemVal.teacherID+"---"+teacher);
+              if(itemVal.teacherID == teacher) {
+                console.log("Teacher ID"+itemVal.teacherID);
+                classList.push(itemVal);
+               
+              }
+             
             });
+           // this.setState({nb_classes: nb_classes});
             this.setState({ classList: classList });
           } else {
             console.log("No data available");
