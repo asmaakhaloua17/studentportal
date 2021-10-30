@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database"
 import "../../css/assignmentStyle.css";
+import { Link } from 'react-router-dom';
 
 export default class Assignments extends Component {
     constructor(props) {
         super(props);
-        this.state = { assignmentsList: [] }
+        this.state = { assignmentsList: [] };
     }
 
     componentDidMount() {
@@ -42,9 +43,10 @@ export default class Assignments extends Component {
                     <h6 className="title">{item.title}</h6>
                     <section>
                         <h3 className="description">{item.description}</h3>
+                        <p className="class">{item.className}</p>
                         <p className="dueDate">{item.dueDate}</p>
                         <p>With supporting text below as a natural lead-in to additional content.</p>
-                        <button> + MORE DETAIL</button>
+                        <button><Link to={`/assignmentDetails/${item.assignmentID}/${item.classID}`}>+ MORE DETAIL</Link></button>
                     </section>
                 </div>
             )

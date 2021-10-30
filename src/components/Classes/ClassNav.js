@@ -17,7 +17,7 @@ export default class ClassNav extends Component {
         
             <Nav.Link href={ "/classDetails/"+ this.props.classId+"/"+this.props.euid}>Modules</Nav.Link>
             <Nav.Link href={"/Grades/"+ this.props.classId+"/"+this.props.euid}>Grades</Nav.Link>
-            <Nav.Link eventKey="link-3">Assignments</Nav.Link>
+            <Nav.Link href={`assignmentDetails/`}>Assignments</Nav.Link>
             <Nav.Link eventKey="link-4">Attendance</Nav.Link>
             <Nav.Link eventKey="link-5">People</Nav.Link>
           </Nav>
