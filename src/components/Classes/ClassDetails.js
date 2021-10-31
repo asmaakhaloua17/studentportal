@@ -41,7 +41,7 @@ export default class ClassDetails extends Component {
 
   render() {
     return (
-      <div className="class">
+      <div>
     
        <Sidenav euid={this.props.match.params.euid}/>
         <Container>

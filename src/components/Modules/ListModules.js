@@ -10,11 +10,11 @@ export default class ListModules extends Component {
         
        
         return (
-           <div>
+           <>
 
                 <ModuleItem euid={this.props.euid} classID={this.props.classID}></ModuleItem>
      
-           </div>
+           </>
           
 
 

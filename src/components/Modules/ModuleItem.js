@@ -55,15 +55,15 @@ export default class ModuleItem extends Component {
         return (
            
             this.state.moduleList.map((module_item) =>
-                   <div className="modules">
-           <Accordion defaultActiveKey="0" flush>
-  <Accordion.Item eventKey="0">
-    <Accordion.Header>{module_item.title}</Accordion.Header>
-    <Accordion.Body>
-  <ListRessources  classID={this.props.classID} moduleID={module_item.moduleID} euid={this.props.euid}></ListRessources>
-    </Accordion.Body>
-  </Accordion.Item>
-  </Accordion>
+              <div className="modules">
+            <Accordion defaultActiveKey="0" flush>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>{module_item.title}</Accordion.Header>
+              <Accordion.Body>
+            <ListRessources  classID={this.props.classID} moduleID={module_item.moduleID} euid={this.props.euid}></ListRessources>
+              </Accordion.Body>
+            </Accordion.Item>
+            </Accordion>
             </div>
                ));
         
