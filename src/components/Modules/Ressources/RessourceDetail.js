@@ -51,13 +51,13 @@ export default class RessourceDetail extends Component {
 
   render() {
     return (
-      <div className="class">
-        {this.props.euid}
-       <Sidenav euid={this.props.match.params.euid}/>
+      <div >
+   
+       <Sidenav euid={this.props.match.params.euid} />
         <Container>
           <Row className="theme_body">
             <Col xs lg="2">
-              <ClassNav  euid={this.props.match.params.euid} classId={this.props.match.params.classId}></ClassNav>
+              <ClassNav  euid={this.props.match.params.euid} classId={this.props.match.params.classId}  isActive="1"></ClassNav>
             </Col>
             <Col>
               <div className="ressources">

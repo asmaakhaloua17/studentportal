@@ -44,14 +44,14 @@ export default class Grades extends Component {
     render() {
     return(
         <>
-        <Sidenav euid={this.props.match.params.euid}/>
+        <Sidenav euid={this.props.match.params.euid} isActive="2"/>
 
         <Container>
 
           <Row className="theme_body">
 
             <Col xs lg="2">
-            <ClassNav   euid={this.props.match.params.euid} classId={this.props.match.params.classId}></ClassNav>
+            <ClassNav   euid={this.props.match.params.euid} classId={this.props.match.params.classId} isActive="2"></ClassNav>
             </Col>
 
             <Col>

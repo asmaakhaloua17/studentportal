@@ -85,13 +85,19 @@ margin-right:5px;
     color: #ffffff;
     text-decoration: none;
 }
-.modules .accordion-button, .ressources .accordion-button
+.modules .accordion-button, .ressources .accordion-button,.assignment .accordion-button
 {
     color: black;
     background-color: #f1eff4;
     margin: 0px;
 }
-
+.assignment .row
+{
+    padding: 10px 0px;
+}
+.assignment-cards p{
+    margin: 0px 10px;
+}
 .modules .accordion-button:not(.collapsed), .ressources .accordion-button:not(.collapsed) {
     color: #000;
     border-top: 1px solid #c6c1c1;
@@ -130,5 +136,14 @@ border-right: 1px solid #c6c1c1;
 
 .gradesTable{
     border-top: 1px solid black;
-    ;
+    
+}
+.assignments-list .accordion-item
+{
+    padding: 10px!important;
+}
+.assignments-list a
+{
+   text-decoration: none;
+   color: blue;
 }
