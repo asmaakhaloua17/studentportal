@@ -29,10 +29,21 @@ export default function LogIn() {
             snapshot.child("password").val(),
             function (err, result) {
               if (result) {
-                console.log("password same" + result);
-                history.push("/Dashboard/"+ uEuid);
-                console.log("Correct password");
-              }
+                const role = snapshot.child("role").val();
+                const fName = snapshot.child("firstname").val();
+                console.log("password same " + result + role );
+                
+                // redirects to either student or teacher dashboard based on role
+                if (role == "student" )
+                {
+                  history.push("/Dashboard/"+ uEuid);
+                }
+                else if (role == "teacher")
+                {
+                  history.push("DashboardTeacher/" + fName+ "/" + uEuid);
+                }
+                
+              }// if(result)
               // if password does not match, error messages displayed
               else {
                 var error = document.getElementById("errorMessage");
