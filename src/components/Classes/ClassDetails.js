@@ -43,7 +43,7 @@ export default class ClassDetails extends Component {
     return (
       <div>
     
-       <Sidenav euid={this.props.match.params.euid}/>
+       <Sidenav  role="teacher"  euid={this.props.match.params.euid} />
         <Container>
           <Row className="theme_body">
             <Col xs lg="2">

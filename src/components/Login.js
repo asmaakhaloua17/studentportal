@@ -40,7 +40,7 @@ export default function LogIn() {
                 }
                 else if (role == "teacher")
                 {
-                  history.push("DashboardTeacher/" + fName+ "/" + uEuid);
+                  history.push("DashboardTeacher/" + uEuid);
                 }
                 
               }// if(result)

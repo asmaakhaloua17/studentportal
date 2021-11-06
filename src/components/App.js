@@ -21,10 +21,10 @@ function App() {
       <Route path="/" component={Login} exact/>
       <Route path="/Register" component={Register}/>
       <Route path="/Dashboard/:euid" component={Dashboard}/>
-      <Route path="/DashboardTeacher/:firstName/:euid" component={DashboardTeacher}/>
+      <Route path="/DashboardTeacher/:euid" component={DashboardTeacher}/>
       <Route path="/ressourceDetails/:ressourceId/:moduleId/:classId/:euid" component={RessourceDetail}/>
       <Route path="/classDetails/:classId/:euid" component={ClassDetails}/>
-      <Route path="/newClass/:euid" component={ClassNew}/>
+      <Route path="/newClass/:euid/" component={ClassNew}/>
       <Route path="/assignmentDetails/:assignmentID/:classId/:euid" component={AssignmentDetails} />
       <Route path="/assignmentListsByClass/:classId/:euid" component={AssignmentList} />
       <Route path="/attendances/:classId/:euid" component={AttendanceByClass} />

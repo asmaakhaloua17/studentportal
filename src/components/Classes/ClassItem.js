@@ -22,7 +22,7 @@ export default class ClassItem extends Component {
     //get list of classes
     get(child(dbRef, `classes`)).then((snapshot) => {
       let euid = this.props.euid;
-      console.log(`object`,   this.props.euid);
+      console.log(`object list`,   this.props.euid);
       if (snapshot.exists()) {
         snapshot.forEach(function (item) {
           var itemVal = item.val();
@@ -54,7 +54,8 @@ export default class ClassItem extends Component {
                    <div>
                 
                 <Card style={{ width: '18rem','marginRight': '20px' }}>
-  <Card.Img variant="top" className="class_img" src={logo} />
+                  
+  <Card.Img variant="top" className="class_img" Style={"Background-color:"+class_item.classColor}  />
   <Card.Body>
     <Card.Title>{class_item.name}</Card.Title>
     <Card.Text>
