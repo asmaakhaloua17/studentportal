@@ -5,11 +5,11 @@ import RessourceDetail from "./Modules/Ressources/RessourceDetail";
 import {Switch, Route} from 'react-router-dom';
 import Dashboard from "./Dashboard";
 import ClassDetails from "./Classes/ClassDetails";
-import AssignmentDetails from "./Assignments/AssignmentDetails";
+import AssignmentDetails from "./assignments/AssignmentDetails";
 import DashboardTeacher from "./DashboardTeacher";
 import ClassNew from "./Classes/ClassNew";
 import Grades from "./Grades/Grades";
-import AssignmentList from "./Assignments/AssignmentList";
+import AssignmentList from "./assignments/AssignmentList";
 import PeopleByClass from "./Attendances/PeopleByClass";
 import AttendanceByClass from "./Attendances/AttendanceByClass";
 
