@@ -29,6 +29,9 @@ Aww yeah, you successfully read this important alert message.
           </Link></Button> <Button variant="primary"><Link className="white" to={`/newClass/${this.props.match.params.euid}`}>
           <i class="fa fa-plus-circle" aria-hidden="true"></i> New Class
           </Link></Button>
+          <Button variant="primary"><Link className="white" to={`/manageAssignment/${this.props.match.params.euid}`}>
+          <i class="fa fa-plus-circle" aria-hidden="true"></i> Manage Assignments
+          </Link></Button>
         </div>
 
   </Alert>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Button, Card,DropdownButton,Dropdown } from "react-bootstrap";
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database";
-import logo from "../../img/course_card-2.png"
 import {Link} from 'react-router-dom';
 
 export default class ClassItem extends Component {

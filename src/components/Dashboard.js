@@ -3,7 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import Footer from "./Footer";
 import Sidenav from "./Sidenav";
 import ListClasses from "./Classes/ListClasses";
-import Assignments from "./assignments/Assignments";
+import Assignments from "./Assignments/Assignments";
 export default class Dashboard extends Component {
   render() {
     return (
