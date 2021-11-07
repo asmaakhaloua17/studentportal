@@ -11,7 +11,7 @@ export default function LogIn() {
   const [uPassword, setuPassword] = useState("");
   const history = useHistory();
 
-  function clearError() {
+  function clearErrorMessage() {
     var error = document.getElementById("errorMessage");
     error.textContent = "";
   }
@@ -22,13 +22,6 @@ export default function LogIn() {
     console.log("Invalid Login");
   }
 
-  function handleLoginUser() {
-    const dbRef = ref(getDatabase());
-   
-    get(child(dbRef, "users/" + uEuid))
-      .then((snapshot) => {
-        // checks if euid is in database
-        if (snapshot.exists()) {
           // checks password match, if true then redirects to dashboard
           bcrypt.compare(
             uPassword,
@@ -96,7 +89,7 @@ export default function LogIn() {
                     required
                     onChange={(e) => {
                       setuEuid(e.target.value);
-                      clearError();
+                      clearErrorMessage();
                     }}
                   ></Form.Control>
                 </Form.Group>
@@ -108,7 +101,7 @@ export default function LogIn() {
                     required
                     onChange={(e) => {
                       setuPassword(e.target.value);
-                      clearError();
+                      clearErrorMessage();
                     }}
                   ></Form.Control>
                 </Form.Group>
