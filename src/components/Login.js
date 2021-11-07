@@ -15,6 +15,12 @@ export default function LogIn() {
     error.textContent = "";
   }
 
+  function invalidLoginMessage(){
+    var error = document.getElementById("errorMessage");
+    error.textContent = "Invalid Login";
+    console.log("Invalid Login");
+  }
+
   function handleLoginUser() {
     const dbRef = ref(getDatabase());
    
@@ -45,9 +51,7 @@ export default function LogIn() {
               }// if(result)
               // if password does not match, error messages displayed
               else {
-                var error = document.getElementById("errorMessage");
-                error.textContent = "Incorrect Password. Please try again.";
-                console.log("Incorrect password");
+                invalidLoginMessage();
               }
             }
           );
@@ -58,9 +62,7 @@ export default function LogIn() {
         }
         // if euid is not found in database, error message is displayed
         else {
-          var error = document.getElementById("errorMessage");
-          error.textContent = "Incorrect EUID. Please try again.";
-          console.log("EUID not found");
+          invalidLoginMessage();
         }
       })
       .catch((error) => {
