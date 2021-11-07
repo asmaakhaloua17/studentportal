@@ -3,12 +3,12 @@ import { Container, Row } from "react-bootstrap";
 import Footer from "./Footer";
 import Sidenav from "./Sidenav";
 import ListClasses from "./Classes/ListClasses";
-import Assignments from "./assignments/Assignments";
+import Assignments from "./Assignments/Assignments";
 export default class Dashboard extends Component {
   render() {
     return (
       <div>
-            <Sidenav euid={this.props.match.params.euid}/>
+            <Sidenav role="student" euid={this.props.match.params.euid}/>
         <Container>
         
           
@@ -22,7 +22,7 @@ export default class Dashboard extends Component {
 <div className="big-title">
 		      <h3 className="big_title">Assignments</h3>
 			
-                <div> <Assignments /></div>
+                <div className="assignment-cards"> <Assignments euid= {this.props.match.params.euid} /></div>
 </div>
           </Row>
           <Row>

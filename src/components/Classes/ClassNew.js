@@ -13,6 +13,7 @@ import Sidenav from "../Sidenav";
 import ManageClasses from "./ManageClasses";
 import "../../firebase";
 import { getDatabase, ref, get, child, set, } from "firebase/database";
+import ColorPicker from "../Tools/ColorPicker";
 
 export default class ClassNew extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class ClassNew extends Component {
       showHide: false,
       openedDialog: -1,
       nbclasses:0,
-      classID: 0,
+      classID: "",
       description: "",
       meetingDates: "",
       title: "",
@@ -35,6 +36,7 @@ export default class ClassNew extends Component {
       seats: 0,
       section: "",
       session: 2,
+      classColor:"",
       students: [],
       teacherID: this.props.match.params.euid,
     };
@@ -67,26 +69,9 @@ export default class ClassNew extends Component {
   };
   //method to add class to the database
   handleAddClass= () => {
-    let nbclasses;
     const db = getDatabase();
-    //get numberofclass exist in db
-    get(child(ref(getDatabase()), `classes`)).then((snapshot) => {
-     
-      let classID = this.props.classID;
-      console.log("searching for modules"+classID);
-      if (snapshot.exists()) {
-        
-        nbclasses= snapshot.size;
-     
-      this.setState({nbclasses:nbclasses});
-      }
-
-    }
-    );
-   
-  
-    set(ref(db, "classes/"+this.state.nbclasses), {
-      classID: this.state.nbclasses,
+    set(ref(db, "classes/"+this.state.classID), {
+      classID: this.state.classID,
       description: this.state.description,
       meetingDates: this.state.meetingDates,
       name: this.state.title,
@@ -97,6 +82,7 @@ export default class ClassNew extends Component {
       session: this.state.session,
       students: this.state.studentsID,
       teacherID: this.props.match.params.euid,
+      classColor:this.state.classColor
     }).then(() => {
           
       window.location.reload(false);
@@ -104,6 +90,9 @@ export default class ClassNew extends Component {
       console.log("Failed to save data new class!" + error);
     });
   }
+  handleColorCode =(colorValue)  =>{
+    this.setState({classColor: colorValue});
+}
   //get List of students
 
   componentDidMount() {
@@ -131,7 +120,9 @@ export default class ClassNew extends Component {
       .catch((error) => {
         console.error(error);
       });
+      
   }
+  
   render() {
     //create UI to list list of students
     const studentListUI = this.state.studentList.map((student_item) => (
@@ -149,7 +140,7 @@ export default class ClassNew extends Component {
     //
     return (
       <div>
-        <Sidenav />
+        <Sidenav role="teacher"  euid={this.props.match.params.euid}/>
         <Container>
           <Row className="theme_body">
             <Col>
@@ -169,6 +160,15 @@ export default class ClassNew extends Component {
                 <h3 className="big_title">New Classes</h3>
                 {this.state.description}
                 <Form>
+                <Form.Group id="classID">
+                    <Form.Label>Class Code</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="classID"
+                      required
+                      onChange={this.handleClassInput}
+                    ></Form.Control>
+                  </Form.Group>
                   <Form.Group id="title">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
@@ -232,13 +232,20 @@ export default class ClassNew extends Component {
                       onChange={this.handleClassInput}
                     ></Form.Control>
                   </Form.Group>
-                  <Form.Group id="action">
-                    <Button
-                      variant="primary"
+                  <Form.Group id="class-color">
+                    <Form.Label>Pick a color</Form.Label>
+                
+                   <ColorPicker onSelectcolor={this.handleColorCode}></ColorPicker>
+              
+                   <Button
+                      variant="outline-secondary" className="add-student-btn"
                       onClick={() => this.handleModalShowHide()}
                     >
                       Add Students
                     </Button>
+                  </Form.Group>
+                  <Form.Group id="action">
+                   
                     <Button
                       className="w-100 btn-secondary"
                       size="lm"

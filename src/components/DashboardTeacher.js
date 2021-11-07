@@ -8,7 +8,7 @@ export default class DashboardTeacher extends Component {
   render() {
     return (
       <div>
-             <Sidenav />
+             <Sidenav  role="teacher" euid={this.props.match.params.euid} />
         <Container>
         
         
@@ -17,7 +17,7 @@ export default class DashboardTeacher extends Component {
             <div>
             <Col className="welcome_box">
 <Alert key="welcome" variant="secondary">
-<h4>Welcome {this.props.match.params.firstName}</h4>
+<h4>Welcome</h4>
 <p>
 
 Aww yeah, you successfully read this important alert message.
@@ -28,6 +28,9 @@ Aww yeah, you successfully read this important alert message.
 <i class="fa fa-hand-paper-o" aria-hidden="true"></i> Roll Call
           </Link></Button> <Button variant="primary"><Link className="white" to={`/newClass/${this.props.match.params.euid}`}>
           <i class="fa fa-plus-circle" aria-hidden="true"></i> New Class
+          </Link></Button>
+          <Button variant="primary"><Link className="white" to={`/manageAssignment/${this.props.match.params.euid}`}>
+          <i class="fa fa-plus-circle" aria-hidden="true"></i> Manage Assignments
           </Link></Button>
         </div>
 

@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../Footer";
 import Sidenav from "../Sidenav";
-import ClassNav from "./ClassNav";
+import ClassNav from "../Classes/ClassNav";
 import { getDatabase, ref, get, child } from "firebase/database";
-import ListModules from "../Modules/ListModules";
-export default class ClassDetails extends Component {
+
+import ListAssignmentByClass from "./ListAssignmentByClass";
+export default class AssignmentList extends Component {
   constructor(props) {
     super(props);
     this.state = { classTitle: "" ,classSection :"" };
@@ -43,16 +44,16 @@ export default class ClassDetails extends Component {
     return (
       <div>
     
-       <Sidenav  role="teacher"  euid={this.props.match.params.euid} />
+       <Sidenav euid={this.props.match.params.euid}/>
         <Container>
           <Row className="theme_body">
             <Col xs lg="2">
           
-              <ClassNav classId={this.props.match.params.classId} euid={this.props.match.params.euid} isActive="1"></ClassNav>
+              <ClassNav classId={this.props.match.params.classId} euid={this.props.match.params.euid} isActive="3"></ClassNav>
             </Col>
-            <Col> <h3 className="big_title">{this.state.classTitle} Section {this.state.classSection}</h3>
+            <Col> <h3 className="big_title">Assignments for {this.state.classTitle} Section {this.state.classSection}</h3>
            
-            <ListModules classID={this.props.match.params.classId} euid={this.props.match.params.euid}></ListModules>
+            <ListAssignmentByClass classID={this.props.match.params.classId} euid={this.props.match.params.euid}></ListAssignmentByClass>
             </Col>
           </Row>
           <Row>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Button, Card,DropdownButton,Dropdown } from "react-bootstrap";
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database";
-import logo from "../../img/course_card-2.png"
 import {Link} from 'react-router-dom';
 
 export default class ClassItem extends Component {
@@ -22,7 +21,7 @@ export default class ClassItem extends Component {
     //get list of classes
     get(child(dbRef, `classes`)).then((snapshot) => {
       let euid = this.props.euid;
-      console.log(`object`,   this.props.euid);
+      console.log(`object list`,   this.props.euid);
       if (snapshot.exists()) {
         snapshot.forEach(function (item) {
           var itemVal = item.val();
@@ -54,7 +53,8 @@ export default class ClassItem extends Component {
                    <div>
                 
                 <Card style={{ width: '18rem','marginRight': '20px' }}>
-  <Card.Img variant="top" className="class_img" src={logo} />
+                  
+  <Card.Img variant="top" className="class_img" Style={"Background-color:"+class_item.classColor}  />
   <Card.Body>
     <Card.Title>{class_item.name}</Card.Title>
     <Card.Text>

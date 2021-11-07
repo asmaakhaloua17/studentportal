@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database"
 import "../../css/assignmentStyle.css";
-import { Link } from 'react-router-dom';
-import { Badge, Button } from "react-bootstrap";
 
 export default class Assignments extends Component {
     constructor(props) {
         super(props);
-        this.state = { assignmentsList: [] };
+        this.state = { assignmentsList: [] }
     }
 
     componentDidMount() {
@@ -41,15 +39,12 @@ export default class Assignments extends Component {
         return (
             this.state.assignmentsList.map(item => 
                 <div  id="card">
-                    <h2 className="title card-title h5">{item.title}</h2>
+                    <h6 className="title">{item.title}</h6>
                     <section>
-                    <p> <Badge pill  bg="success">{item.className}</Badge> | 
-                   <Badge pill  bg="danger">{item.dueDate}</Badge>
-                    </p>
-                   <p> {item.summary} </p>
-                
-                      
-                    <Button variant="secondary class-more-btn"><Link to={`/assignmentDetails/${item.assignmentID}/${item.classID}/${this.props.euid}`}>+ More</Link></Button>
+                        <h3 className="description">{item.description}</h3>
+                        <p className="dueDate">{item.dueDate}</p>
+                        <p>With supporting text below as a natural lead-in to additional content.</p>
+                        <button> + MORE DETAIL</button>
                     </section>
                 </div>
             )

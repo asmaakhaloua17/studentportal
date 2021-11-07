@@ -68,7 +68,8 @@ export default class Sidenav extends Component {
         //create nav nodes for classes
         const listclasses = this.state.classList.map((class_item) =>
         
-        <NavDropdown.Item href="#" key={class_item.classID}>{class_item.name}</NavDropdown.Item>
+        <NavDropdown.Item href="#" key={class_item.classID}>
+          {class_item.name} Section {class_item.section} - {class_item.courseName}</NavDropdown.Item>
     );  
  //create nav nodes for assignments
  const listassignments = this.state.assignmentList.map((assignment_item) =>
@@ -76,7 +77,7 @@ export default class Sidenav extends Component {
    href="#" 
    key={assignment_item.assignmentID}>
      {<Link to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}`}>
-       {assignment_item.title} {assignment_item.className}
+       {assignment_item.title} -- Section {assignment_item.className} {assignment_item.section} - {assignment_item.courseName}
      </Link>}
  </NavDropdown.Item>
  
@@ -92,9 +93,23 @@ export default class Sidenav extends Component {
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link href="#"><Link to={`/Dashboard/`+this.props.euid}>
-            Dashboard
-          </Link></Nav.Link>
+       
+         {(this.props.role === "teacher") ?
+         
+   ( <Nav.Link href="#"><Link to={`/DashboardTeacher/`+this.props.euid}>
+   Dashboard
+ </Link></Nav.Link>
+   )
+    :
+    ( <Nav.Link href="#"><Link to={`/Dashboard/`+this.props.euid}>
+   Dashboard
+ </Link></Nav.Link>
+   )    
+        }
+         
+        
+         
+     
        
         <NavDropdown title="Classes" id="basic-nav-dropdown">
            {listclasses} 
