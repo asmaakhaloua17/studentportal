@@ -19,6 +19,7 @@ export default class ManageAssignment extends Component {
       assignmentList : [],
       showHide: false,
       openedDialog: -1,
+      actionType: "",
       assignmentID: "",
       classID: "",
       className: "",
@@ -49,7 +50,7 @@ export default class ManageAssignment extends Component {
     this.setState({ classColor: colorValue });
   };
     //method to update the state variables with the user inputs
-    handleClassInput = (e) => {
+    handleAssignmentInput = (e) => {
       const name = e.target.name;
   
       const value = e.target.value;
@@ -61,18 +62,18 @@ export default class ManageAssignment extends Component {
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
-  //method to add class to the database
+  //method to update assignment to the database
   handleUpdateAssignment = (assignmentid) => {
     const db = getDatabase();
     set(ref(db, "assignments/" + assignmentid), {
       assignmentID:assignmentid,
-      description: document.getElementById('description_val').value,
-      dueDate:document.getElementById('dueDate_val').value,
-      title:document.getElementById('title_val').value,
+      description: document.getElementById('description_Val'+assignmentid).value,
+      dueDate:document.getElementById('duedate_Val'+assignmentid).innerText,
+      title:document.getElementById('title_Val'+assignmentid).value,
       published:1,
-      points: document.getElementById('points_val').value,
-      summary: document.getElementById('summary_val').value,
-      classID: document.getElementById('classID_val').value,
+      points: document.getElementById('points_Val'+assignmentid).value,
+      summary: document.getElementById('summary_Val'+assignmentid).value,
+      classID: document.getElementById('classID_val'+assignmentid).value,
       teacherID: this.props.teacherID
     })
       .then(() => {
@@ -148,11 +149,7 @@ export default class ManageAssignment extends Component {
   }
 
   render() {
-    const listclasses = this.state.classList.map((class_item) =>
-        
-    <option value={class_item.classID}>
-      {class_item.classID} -- {class_item.name} </option>
-);
+  
     return (
       <div>
       
@@ -175,67 +172,66 @@ export default class ManageAssignment extends Component {
                 <td width="37%">
                   {" "}
                   <Button
-                    variant="primary class-more-btn"
+                    variant="secondary class-more-btn"
                     onClick={() =>
-                      this.openModal(assignment_item.assignmentid, "details")
+                      this.openModal(assignment_item.assignmentID, "details")
                     }
                   >
                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>{" "}
                     Details
                   </Button>{" "}
-                  <DropdownButton title="Manage" id="bg-nested-dropdown">
+                  <DropdownButton title="Manage" >
                     <Dropdown.Item
                       eventKey="1"
                       onClick={() =>
-                        this.openModal(assignment_item.assignmentid, "update")
+                        this.openModal(assignment_item.assignmentID, "update")
                       }
                     >
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>{" "}
                       Update
                     </Dropdown.Item>
-                    <Dropdown.Item eventKey="1">
-                      <i class="fa fa-address-book" aria-hidden="true"></i> Add
-                      Student
-                    </Dropdown.Item>
+                   
                     <Dropdown.Item eventKey="2">
                       <i class="fa fa-trash" aria-hidden="true"></i> Delete
                     </Dropdown.Item>
                   </DropdownButton>
                 </td>
                 <Modal
-                  show={this.state.openedDialog === assignment_item.assignmentid}
+                  show={this.state.openedDialog === assignment_item.assignmentID}
                   onHide={this.closeModal}
                 >
                   <Modal.Header closeButton>
-                    <Modal.Title>{assignment_item.name}</Modal.Title>
+                    <Modal.Title>{assignment_item.title}</Modal.Title>
                   </Modal.Header>
 
                   <Modal.Body>
-                  <Form>
+                  <Form  onSubmit={() => this.handleUpdateAssignment(assignment_item.assignmentID)}>
                 <Form.Group id="classID">
                   
                   <Form.Label>Class Name</Form.Label>
-                <Form.Select  name= "classID" aria-label="dropdown list of classes"   onChange={this.handleAssignmentInput}>
-                  {listclasses}
-                  </Form.Select>
-                  </Form.Group>
-                <Form.Group id="assignmentID">
-                  
-                    <Form.Label>Assignment Code</Form.Label>
-                    <Form.Control
+                  <Form.Control
                       type="text"
-                      name="assignmentID"
+                      name="classID"
+                      id= "classID_Val"{...assignment_item.assignmentID}
+                      value= {assignment_item.classID}
                       required
                       onChange={this.handleAssignmentInput}
-                    ></Form.Control>
-                  </Form.Group>
+                      readOnly="true"
+                    ></Form.Control>                  
+                    </Form.Group>
+           
                   <Form.Group id="title">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                       type="text"
                       name="title"
+                      id= "title_Val"{...assignment_item.assignmentID}
+                      value= {assignment_item.title}
                       required
                       onChange={this.handleAssignmentInput}
+                      readOnly={
+                        this.state.actionType === "update" ? false : true
+                      }
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="description">
@@ -243,8 +239,13 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       type="text"
                       name="description"
+                      id= "description_Val"{...assignment_item.assignmentID}
+                      value= {assignment_item.description}
                       required
                       onChange={this.handleAssignmentInput}
+                      readOnly={
+                        this.state.actionType === "update" ? false : true
+                      }
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="summary">
@@ -252,9 +253,14 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       as="textarea"
                       name="summary"
+                      id= "summary_Val"{...assignment_item.assignmentID}
                       style={{ height: '100px' }}
+                      value= {assignment_item.summary}
                       required
                       onChange={this.handleAssignmentInput}
+                      readOnly={
+                        this.state.actionType === "update" ? false : true
+                      }
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="duedate">
@@ -262,8 +268,13 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       type="date"
                       name="duedate"
+                      id= "duedate_Val"{...assignment_item.assignmentID}
+                      value= {assignment_item.dueDate}
                       required
                       onChange={this.handleAssignmentInput}
+                      readOnly={
+                        this.state.actionType === "update" ? false : true
+                      }
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="points">
@@ -271,35 +282,33 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       type="text"
                       name="points"
+                      id= "points_Val"{...assignment_item.assignmentID}
+                      value= {assignment_item.points}
                       required
                       onChange={this.handleAssignmentInput}
+                      readOnly={
+                        this.state.actionType === "update" ? false : true
+                      }
                     ></Form.Control>
                   </Form.Group>
 <Form.Group id="published">
 
 <Form.Check
         type="checkbox"
-        id="published"
+        id= "published"{...assignment_item.assignmentID}
         className="mb-2"
         label="Published"
       />
   </Form.Group>
-                  <Form.Group id="action">
-                    <Button
-                      className="w-100 btn-secondary"
-                      size="lm"
-                      type="Button"
-                      onClick={this.handleAddClass}
-                    >
-                      Save
-                    </Button>
-                  </Form.Group>
+                
                 </Form>
                   </Modal.Body>
                   <Modal.Footer>
-                    <Button
+                    <Button    disabled={
+                        this.state.actionType === "update" ? false : true
+                      }
                       variant="primary"
-                      onClick={() => this.handleUpdateAssignment(assignment_item.assignmentid)}
+                     type = "submit"
                     >
                       Save Changes
                     </Button>

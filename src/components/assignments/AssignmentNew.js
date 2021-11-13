@@ -25,7 +25,7 @@ export default class AssignmentNew extends Component {
       classID: "",
       className: "",
       description: "",
-      dueDate: "",
+      duedate: "",
       points: "",
       published: 0,
       summary: "",
@@ -50,17 +50,18 @@ export default class AssignmentNew extends Component {
    // console.log("Name: " + name + "value:" + value);
   };
   //method to add Assignment to the database
-  handleAddAssignment = () => {
+  handleAddAssignment = (event) => {
     const db = getDatabase();
-    set(ref(db, "Assignments/" + this.state.assignmentID), {
+    set(ref(db, "assignments/" + this.state.assignmentID), {
       assignmentID: this.state.assignmentID,
       description: this.state.description,
       title: this.state.title,
-      dueDate: this.state.dueDate,
+      classID: this.state.classID,
+      dueDate: this.state.duedate,
       published: this.state.published,
       points: this.state.points,
       summary: this.state.summary,
-      teacherID: this.props.match.params.euid,
+      teacher: this.props.match.params.euid,
     })
       .then(() => {
         window.location.reload(false);
@@ -68,6 +69,7 @@ export default class AssignmentNew extends Component {
       .catch((error) => {
         console.log("Failed to save data new Assignment!" + error);
       });
+      event.preventDefault();
   };
 
   //get List of classes
@@ -128,11 +130,13 @@ export default class AssignmentNew extends Component {
               <div className="big-title">
                 <h3 className="big_title">New Assignments</h3>
                 {this.state.description}
-                <Form>
+                <Form  onSubmit={this.handleAddAssignment}>
                 <Form.Group id="classID">
                   
                   <Form.Label>Class Name</Form.Label>
-                <Form.Select  name= "classID" aria-label="dropdown list of classes"   onChange={this.handleAssignmentInput}>
+                <Form.Select  name= "classID" aria-label="dropdown list of classes"   onChange={this.handleAssignmentInput} required>
+                <option value="">
+         Select Class</option>
                   {listclasses}
                   </Form.Select>
                   </Form.Group>
@@ -205,8 +209,7 @@ export default class AssignmentNew extends Component {
                     <Button
                       className="w-100 btn-secondary"
                       size="lm"
-                      type="Button"
-                      onClick={this.handleAddClass}
+                      type="submit"
                     >
                       Save
                     </Button>

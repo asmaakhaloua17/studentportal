@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card,DropdownButton,Dropdown } from "react-bootstrap";
+import { Button, Card} from "react-bootstrap";
 import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database";
 import {Link} from 'react-router-dom';
@@ -62,15 +62,7 @@ export default class ClassItem extends Component {
     </Card.Text>
     <Button variant="primary class-more-btn"><Link to={`/classDetails/${class_item.classID}/${this.props.euid}`}>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>  Access
-          </Link></Button>
-          {this.props.role === "teacher" ? (
-             <DropdownButton  title="Manage" id="bg-nested-dropdown">
-             <Dropdown.Item eventKey="1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</Dropdown.Item>
-             <Dropdown.Item eventKey="2"><i class="fa fa-trash" aria-hidden="true"></i> Delete</Dropdown.Item>
-           </DropdownButton>
-         
-            ) : ""}
-         
+          </Link></Button>         
   </Card.Body>
 </Card>
             </div>

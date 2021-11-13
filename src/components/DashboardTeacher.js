@@ -27,7 +27,7 @@ Aww yeah, you successfully read this important alert message.
 <Button variant="primary"><Link to={`/rollCall}`}  className="white">
 <i class="fa fa-hand-paper-o" aria-hidden="true"></i> Roll Call
           </Link></Button> <Button variant="primary"><Link className="white" to={`/newClass/${this.props.match.params.euid}`}>
-          <i class="fa fa-plus-circle" aria-hidden="true"></i> New Class
+          <i class="fa fa-plus-circle" aria-hidden="true"></i> Manage Classes
           </Link></Button>
           <Button variant="primary"><Link className="white" to={`/manageAssignment/${this.props.match.params.euid}`}>
           <i class="fa fa-plus-circle" aria-hidden="true"></i> Manage Assignments
