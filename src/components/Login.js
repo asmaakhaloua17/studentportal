@@ -21,7 +21,13 @@ export default function LogIn() {
     error.textContent = "Invalid Login";
     console.log("Invalid Login");
   }
+  function handleLoginUser() {
+    const dbRef = ref(getDatabase());
 
+    get(child(dbRef, "users/" + uEuid))
+      .then((snapshot) => {
+        // checks if euid is in database
+        if (snapshot.exists()) {
           // checks password match, if true then redirects to dashboard
           bcrypt.compare(
             uPassword,
@@ -132,4 +138,4 @@ export default function LogIn() {
       </Container>
     </>
   );
-}
+                  }
