@@ -69,14 +69,19 @@ export default class Sidenav extends Component {
         const listclasses = this.state.classList.map((class_item) =>
         
         <NavDropdown.Item href="#" key={class_item.classID}>
-          {class_item.name} Section {class_item.section} - {class_item.courseName}</NavDropdown.Item>
+       
+          {<Link to={`/classDetails/${class_item.classID}/${class_item.teacherID}`}>
+          {class_item.name} Section {class_item.section} - {class_item.courseName}
+     </Link>}
+          
+          </NavDropdown.Item>
     );  
  //create nav nodes for assignments
  const listassignments = this.state.assignmentList.map((assignment_item) =>
  <NavDropdown.Item 
    href="#" 
    key={assignment_item.assignmentID}>
-     {<Link to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}`}>
+     {<Link to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}/${assignment_item.teacher}`}>
        {assignment_item.title} -- Section {assignment_item.className} {assignment_item.section} - {assignment_item.courseName}
      </Link>}
  </NavDropdown.Item>
