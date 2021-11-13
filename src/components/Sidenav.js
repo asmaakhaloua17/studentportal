@@ -11,31 +11,33 @@ export default class Sidenav extends Component {
         super(props);
        
         
-        this.state = {classList : [],assignmentList : [],role :""}
+        this.state = {classList : [],assignmentList : [],dashboardlink :"",currentuser : this.props.euid}
         }
         componentDidMount() {
             
             const dbRef = ref(getDatabase());
             let classList = [];
             let assignmentList = [];
-let role ="";
+let dashboardlink ="Dashboard";
+let currentuser =this.state.currentuser;
             //get list of classes
             get(child(dbRef, `classes`)).then((snapshot) => {
               if (snapshot.exists()) {
                 snapshot.forEach(function(item) {
                     var itemVal = item.val();
                     classList.push(itemVal);
-                  /*   if(itemVal.teacherID == this.props.euid)
-                    {
-                      classList.push(itemVal);
-                      role = "teacher"; //user role
-                    } */
+               
+                if(itemVal.teacherID == currentuser)
+                {
+                  dashboardlink = "DashboardTeacher";
+                }
+               
                    console.log(itemVal.classID);
                 });
                
-                this.setState({ role:role });
+                this.setState({ dashboardlink:dashboardlink });
                this.setState({ classList:classList });
-            
+    
               } else {
                 console.log("No data available");
               }
@@ -105,18 +107,11 @@ let role ="";
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
        
-         {(this.state.role === "teacher") ?
-         
-   ( <Nav.Link href="#"><Link to={`/DashboardTeacher/`+this.props.euid}>
+        <Nav.Link href="#"><Link to={`/`+this.state.dashboardlink+`/`+this.props.euid}>
    Dashboard
  </Link></Nav.Link>
-   )
-    :
-    ( <Nav.Link href="#"><Link to={`/Dashboard/`+this.props.euid}>
-   Dashboard
- </Link></Nav.Link>
-   )    
-        }
+    
+        
          
         
          

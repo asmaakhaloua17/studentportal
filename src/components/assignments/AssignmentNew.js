@@ -190,7 +190,7 @@ export default class AssignmentNew extends Component {
                   <Form.Group id="points">
                     <Form.Label>Points</Form.Label>
                     <Form.Control
-                      type="text"
+                      type="number"
                       name="points"
                       required
                       onChange={this.handleAssignmentInput}

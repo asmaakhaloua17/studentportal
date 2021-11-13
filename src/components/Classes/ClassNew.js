@@ -199,7 +199,7 @@ export default class ClassNew extends Component {
                   <Form.Group id="session">
                     <Form.Label>Session</Form.Label>
                     <Form.Control
-                      type="text"
+                      type="number"
                       name="session"
                       required
                       onChange={this.handleClassInput}
@@ -217,7 +217,7 @@ export default class ClassNew extends Component {
                   <Form.Group id="seats">
                     <Form.Label>Seats</Form.Label>
                     <Form.Control
-                      type="text"
+                      type="number"
                       name="seats"
                       required
                       onChange={this.handleClassInput}
@@ -225,12 +225,13 @@ export default class ClassNew extends Component {
                   </Form.Group>
                   <Form.Group id="meetingDates">
                     <Form.Label>Meeting Day</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="meetingDay"
-                      required
-                      onChange={this.handleClassInput}
-                    ></Form.Control>
+                 
+                    <Form.Select   name="meetingDay" defaultValue=""  required
+                      onChange={this.handleClassInput}>
+        <option>Choose...</option>
+        <option value="MWF">MWF</option>
+        <option value="TTH">TTH</option>
+      </Form.Select>
                   </Form.Group>
                   <Form.Group id="class-color">
                     <Form.Label>Pick a color</Form.Label>

@@ -5,11 +5,12 @@ import {
   Dropdown,
   Button,
   Modal,
-  Form,
+  Form,Alert
 } from "react-bootstrap";
 import "../../firebase";
-import { getDatabase, ref, get, child, set } from "firebase/database";
+import { getDatabase, ref, get, child, set, remove } from "firebase/database";
 import ColorPicker from "../Tools/ColorPicker";
+
 
 export default class ManageClasses extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ export default class ManageClasses extends Component {
       session: 2,
       students: [],
       teacherID: this.props.teacherID,
+      hidefeedback : "none"
     };
   }
 
@@ -69,7 +71,27 @@ export default class ManageClasses extends Component {
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
-  //method to add class to the database
+
+   //method to remove class to the database
+   handleRemoveClass = (classID) => {
+    const db = getDatabase();
+    ///
+  
+    if (window.confirm('Are you sure you wish to delete this item?'))
+    {
+        remove(ref(db, "classes/" + classID)).then(() => {
+          window.location.reload(false);
+          document.getElementById('feedback').style.display = "block";
+          document.getElementById('feedback').innerText = "Class " + classID + " remove successfully!";
+        })
+        .catch((error) => {
+          console.log("Failed to remove class :" + classID  + " error :"+ error);
+        });
+   }
+
+    ///
+  }
+  //method to update class to the database
   handleUpdateClass = (classID) => {
     const db = getDatabase();
     set(ref(db, "classes/" + classID), {
@@ -133,7 +155,9 @@ export default class ManageClasses extends Component {
   render() {
     return (
       <div>
-      
+       <Alert key="feedback" id ="feedback" variant="" Style ="display :" {...this.state.hidefeedback}>
+  
+  </Alert>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -172,7 +196,9 @@ export default class ManageClasses extends Component {
                       <i class="fa fa-address-book" aria-hidden="true"></i> Add
                       Student
                     </Dropdown.Item>
-                    <Dropdown.Item eventKey="2">
+                    <Dropdown.Item eventKey="2"  onClick={() =>
+                        this.handleRemoveClass(class_item.classID)
+                      }>
                       <i class="fa fa-trash" aria-hidden="true"></i> Delete
                     </Dropdown.Item>
                   </DropdownButton>
@@ -186,7 +212,7 @@ export default class ManageClasses extends Component {
                   </Modal.Header>
 
                   <Modal.Body>
-                    <Form>
+                    <Form  onSubmit={() => this.handleUpdateClass(class_item.classID)}>
                       <Form.Group id="name">
                         <Form.Label>Name</Form.Label>
                         
@@ -288,7 +314,7 @@ export default class ManageClasses extends Component {
                   <Modal.Footer>
                     <Button
                       variant="primary"
-                      onClick={() => this.handleUpdateClass(class_item.classID)}
+                     type = "submit"
                     >
                       Save Changes
                     </Button>
