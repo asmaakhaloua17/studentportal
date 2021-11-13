@@ -5,18 +5,18 @@ import {
   Dropdown,
   Button,
   Modal,
-  Form,Alert
+  Form,
+  Alert,
 } from "react-bootstrap";
 import "../../firebase";
 import { getDatabase, ref, get, child, set, remove } from "firebase/database";
 import ColorPicker from "../Tools/ColorPicker";
 
-
 export default class ManageClasses extends Component {
   constructor(props) {
     super(props);
 
-      this.state = {
+    this.state = {
       classList: [],
       show: false,
       openedDialog: -1,
@@ -39,7 +39,7 @@ export default class ManageClasses extends Component {
       session: 2,
       students: [],
       teacherID: this.props.teacherID,
-      hidefeedback : "none"
+      hidefeedback: "none",
     };
   }
 
@@ -58,53 +58,56 @@ export default class ManageClasses extends Component {
   handleColorCode = (colorValue) => {
     this.setState({ classColor: colorValue });
   };
-    //method to update the state variables with the user inputs
-    handleClassInput = (e) => {
-      const name = e.target.name;
-  
-      const value = e.target.value;
-  
-      this.setState({ [name]: value });
-      console.log("Name: " + name + "value:" + value);
-    };
+  //method to update the state variables with the user inputs
+  handleClassInput = (e) => {
+    const name = e.target.name;
+
+    const value = e.target.value;
+
+    this.setState({ [name]: value });
+    console.log("Name: " + name + "value:" + value);
+  };
   //handle popup
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
 
-   //method to remove class to the database
-   handleRemoveClass = (classID) => {
+  //method to remove class to the database
+  handleRemoveClass = (classID) => {
     const db = getDatabase();
     ///
-  
-    if (window.confirm('Are you sure you wish to delete this item?'))
-    {
-        remove(ref(db, "classes/" + classID)).then(() => {
+
+    if (window.confirm("Are you sure you wish to delete this item?")) {
+      remove(ref(db, "classes/" + classID))
+        .then(() => {
           window.location.reload(false);
-          document.getElementById('feedback').style.display = "block";
-          document.getElementById('feedback').innerText = "Class " + classID + " remove successfully!";
+          document.getElementById("feedback").style.display = "block";
+          document.getElementById("feedback").innerText =
+            "Class " + classID + " remove successfully!";
         })
         .catch((error) => {
-          console.log("Failed to remove class :" + classID  + " error :"+ error);
+          console.log(
+            "Failed to remove class :" + classID + " error :" + error
+          );
         });
-   }
+    }
 
     ///
-  }
+  };
   //method to update class to the database
   handleUpdateClass = (classID) => {
     const db = getDatabase();
     set(ref(db, "classes/" + classID), {
-      classID:classID,
-      description: document.getElementById('description_val').value,
-      meetingDates:document.getElementById('meetingDates_val').value,
-      name:document.getElementById('name_val').value,
-      published:1,
-      roomNumber: document.getElementById('roomNumber_val').value,
-      seats: document.getElementById('seats_val').value,
-      section: document.getElementById('section_val').value,
-      session:document.getElementById('session_val').value,
-     students: document.getElementById('studentIDs_val').value.split(','),
+      classID: classID,
+      description: document.getElementById("description_val").value,
+      meetingDates: document.getElementById("meetingDates_val").value,
+      name: document.getElementById("name_val").value,
+      published: 1,
+      roomNumber: document.getElementById("roomNumber_val").value,
+      seats: document.getElementById("seats_val").value,
+      section: document.getElementById("section_val").value,
+      session: document.getElementById("session_val").value,
+      students: document.getElementById("studentIDs_val").value.split(","),
       teacherID: this.props.teacherID,
       classColor: this.state.classColor,
     })
@@ -119,14 +122,13 @@ export default class ManageClasses extends Component {
     const dbRef = ref(getDatabase());
     let classList = [];
     let teacher = this.props.teacherID;
-   
+
     //get list of classes
     get(child(dbRef, `classes`))
       .then(
         (snapshot) => {
           if (snapshot.exists()) {
             snapshot.forEach(function (item) {
-          
               var itemVal = item.val();
               console.log("Teacher ID" + itemVal.teacherID + "---" + teacher);
               if (itemVal.teacherID == teacher) {
@@ -147,17 +149,18 @@ export default class ManageClasses extends Component {
       .catch((error) => {
         console.error(error);
       });
-
-    
-  
   }
 
   render() {
     return (
       <div>
-       <Alert key="feedback" id ="feedback" variant="" Style ="display :" {...this.state.hidefeedback}>
-  
-  </Alert>
+        <Alert
+          key="feedback"
+          id="feedback"
+          variant=""
+          Style="display :"
+          {...this.state.hidefeedback}
+        ></Alert>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -196,9 +199,10 @@ export default class ManageClasses extends Component {
                       <i class="fa fa-address-book" aria-hidden="true"></i> Add
                       Student
                     </Dropdown.Item>
-                    <Dropdown.Item eventKey="2"  onClick={() =>
-                        this.handleRemoveClass(class_item.classID)
-                      }>
+                    <Dropdown.Item
+                      eventKey="2"
+                      onClick={() => this.handleRemoveClass(class_item.classID)}
+                    >
                       <i class="fa fa-trash" aria-hidden="true"></i> Delete
                     </Dropdown.Item>
                   </DropdownButton>
@@ -212,39 +216,44 @@ export default class ManageClasses extends Component {
                   </Modal.Header>
 
                   <Modal.Body>
-                    <Form  onSubmit={() => this.handleUpdateClass(class_item.classID)}>
+                    <Form
+                      onSubmit={() =>
+                        this.handleUpdateClass(class_item.classID)
+                      }
+                    >
                       <Form.Group id="name">
                         <Form.Label>Name</Form.Label>
-                        
+
                         <Form.Control
-                          type="text" id = "name_val"
-                          value={class_item.name}
-                          onChange={this.handleClassInput}
+                          type="text"
+                          id="name_val"
+                          defaultValue={class_item.name}
+                          required
                           readOnly={
                             this.state.actionType === "update" ? false : true
                           }
                         ></Form.Control>
-                        
                       </Form.Group>
                       <Form.Group id="description">
                         <Form.Label>Description</Form.Label>
-                        
+
                         <Form.Control
-                          type="text" id = "description_val"
-                          value={class_item.description}
-                          onChange={this.handleClassInput}
+                          type="text"
+                          id="description_val"
+                          defaultValue={class_item.description}
+                          required
                           readOnly={
                             this.state.actionType === "update" ? false : true
                           }
                         ></Form.Control>
-                        
                       </Form.Group>
                       <Form.Group id="section">
                         <Form.Label>Section</Form.Label>
-                        <Form.Control 
-                          type="text" id = "section_val"
-                          value={class_item.section}
-                          onChange={this.handleClassInput}
+                        <Form.Control
+                          type="text"
+                          id="section_val"
+                          defaultValue={class_item.section}
+                          required
                           readOnly={
                             this.state.actionType === "update" ? false : true
                           }
@@ -253,9 +262,10 @@ export default class ManageClasses extends Component {
                       <Form.Group id="session">
                         <Form.Label>Session</Form.Label>
                         <Form.Control
-                          type="text" id = "session_val" 
-                          onChange={this.handleClassInput}
-                          value={class_item.session}
+                          type="text"
+                          id="session_val"
+                          required
+                          defaultValue={class_item.session}
                           readOnly={
                             this.state.actionType === "update" ? false : true
                           }
@@ -264,9 +274,10 @@ export default class ManageClasses extends Component {
                       <Form.Group id="roomNumber">
                         <Form.Label>Room Number</Form.Label>
                         <Form.Control
-                          type="text" id = "roomNumber_val"
-                          onChange={this.handleClassInput}
-                          value={class_item.roomNumber}
+                          type="text"
+                          id="roomNumber_val"
+                          required
+                          defaultValue={class_item.roomNumber}
                           readOnly={
                             this.state.actionType === "update" ? false : true
                           }
@@ -275,9 +286,10 @@ export default class ManageClasses extends Component {
                       <Form.Group id="seats">
                         <Form.Label>Seats</Form.Label>
                         <Form.Control
-                          type="text"   id = "seats_val"
-                          onChange={this.handleClassInput}
-                          value={class_item.seats}
+                          type="text"
+                          id="seats_val"
+                          required
+                          defaultValue={class_item.seats}
                           readOnly={
                             this.state.actionType === "update" ? false : true
                           }
@@ -286,15 +298,20 @@ export default class ManageClasses extends Component {
                       <Form.Group id="meetingDates">
                         <Form.Label>Meeting Day</Form.Label>
                         <Form.Control
-                          type="text"  id = "meetingDates_val"
-                          onChange={this.handleClassInput}
-                          value={class_item.meetingDates}
+                          type="text"
+                          id="meetingDates_val"
+                          required
+                          defaultValue={class_item.meetingDates}
                           readOnly={
                             this.state.actionType === "update" ? false : true
                           }
                         ></Form.Control>
                       </Form.Group>
-                      <input type="hidden"  id="studentIDs_val" value={class_item.students}></input>
+                      <input
+                        type="hidden"
+                        id="studentIDs_val"
+                        defaultValue={class_item.students}
+                      ></input>
                       <Form.Group
                         id="class-color"
                         Style={
@@ -309,16 +326,17 @@ export default class ManageClasses extends Component {
                           onSelectcolor={this.handleColorCode}
                         ></ColorPicker>
                       </Form.Group>
+                      <Button
+                        variant="primary"
+                        disabled={
+                          this.state.actionType === "update" ? false : true
+                        }
+                        type="submit"
+                      >
+                        Save Changes
+                      </Button>
                     </Form>
                   </Modal.Body>
-                  <Modal.Footer>
-                    <Button
-                      variant="primary"
-                     type = "submit"
-                    >
-                      Save Changes
-                    </Button>
-                  </Modal.Footer>
                 </Modal>
               </tr>
             ))}
