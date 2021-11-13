@@ -241,6 +241,7 @@ export default class ManageClasses extends Component {
                           type="text"
                           id="description_val"
                           defaultValue={class_item.description}
+                          maxLength ="124"
                           required
                           readOnly={
                             this.state.actionType === "update" ? false : true

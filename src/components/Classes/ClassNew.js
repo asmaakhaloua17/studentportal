@@ -158,7 +158,7 @@ export default class ClassNew extends Component {
               {" "}
               <div className="big-title">
                 <h3 className="big_title">New Classes</h3>
-                {this.state.description}
+              
                 <Form    onSubmit={this.handleAddClass}>
                 <Form.Group id="classID">
                     <Form.Label>Class Code</Form.Label>
@@ -181,8 +181,11 @@ export default class ClassNew extends Component {
                   <Form.Group id="description">
                     <Form.Label>Description</Form.Label>
                     <Form.Control
-                      type="text"
+                       as="textarea"
+                    
+                       style={{ height: '70px' }}
                       name="description"
+                      maxLength= "124"
                       required
                       onChange={this.handleClassInput}
                     ></Form.Control>
