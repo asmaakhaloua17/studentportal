@@ -27,7 +27,8 @@ export default class ListAssignmentByClass extends Component {
         
           var itemVal = item.val();
          // console.log("found 1"+itemVal.classID);
-          if(itemVal.classID == classID && itemVal.published == 1)
+         //itemVal.published == 1
+          if(itemVal.classID == classID )
           {
            
             assignmentList.push(itemVal);

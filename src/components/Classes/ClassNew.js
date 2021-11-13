@@ -159,7 +159,7 @@ export default class ClassNew extends Component {
               <div className="big-title">
                 <h3 className="big_title">New Classes</h3>
                 {this.state.description}
-                <Form>
+                <Form    onSubmit={this.handleAddClass}>
                 <Form.Group id="classID">
                     <Form.Label>Class Code</Form.Label>
                     <Form.Control
@@ -249,8 +249,8 @@ export default class ClassNew extends Component {
                     <Button
                       className="w-100 btn-secondary"
                       size="lm"
-                      type="Button"
-                      onClick={this.handleAddClass}
+                      type="submit"
+                   
                     >
                       Save
                     </Button>

@@ -11,24 +11,29 @@ export default class Sidenav extends Component {
         super(props);
        
         
-        this.state = {classList : [],assignmentList : []}
+        this.state = {classList : [],assignmentList : [],role :""}
         }
         componentDidMount() {
             
             const dbRef = ref(getDatabase());
             let classList = [];
             let assignmentList = [];
-
+let role ="";
             //get list of classes
             get(child(dbRef, `classes`)).then((snapshot) => {
               if (snapshot.exists()) {
                 snapshot.forEach(function(item) {
                     var itemVal = item.val();
                     classList.push(itemVal);
+                  /*   if(itemVal.teacherID == this.props.euid)
+                    {
+                      classList.push(itemVal);
+                      role = "teacher"; //user role
+                    } */
                    console.log(itemVal.classID);
                 });
                
-               
+                this.setState({ role:role });
                this.setState({ classList:classList });
             
               } else {
@@ -68,7 +73,7 @@ export default class Sidenav extends Component {
         //create nav nodes for classes
         const listclasses = this.state.classList.map((class_item) =>
         
-        <NavDropdown.Item href="#" key={class_item.classID}>
+        <NavDropdown.Item key={class_item.classID}>
        
           {<Link to={`/classDetails/${class_item.classID}/${class_item.teacherID}`}>
           {class_item.name} Section {class_item.section} - {class_item.courseName}
@@ -79,7 +84,7 @@ export default class Sidenav extends Component {
  //create nav nodes for assignments
  const listassignments = this.state.assignmentList.map((assignment_item) =>
  <NavDropdown.Item 
-   href="#" 
+ 
    key={assignment_item.assignmentID}>
      {<Link to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}/${assignment_item.teacher}`}>
        {assignment_item.title} -- Section {assignment_item.className} {assignment_item.section} - {assignment_item.courseName}
@@ -90,16 +95,17 @@ export default class Sidenav extends Component {
         return (
          
              
-
+       
 <div id="slide-out" className="side-nav fixed">
 <Navbar bg="light" expand="lg" className="nav-portal">
   <Container>
+    
     <Navbar.Brand href="#"><img src={logo} alt="logo" className="nav-logo"></img></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
        
-         {(this.props.role === "teacher") ?
+         {(this.state.role === "teacher") ?
          
    ( <Nav.Link href="#"><Link to={`/DashboardTeacher/`+this.props.euid}>
    Dashboard

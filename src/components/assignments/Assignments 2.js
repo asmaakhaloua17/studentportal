@@ -3,7 +3,7 @@ import "../../firebase";
 import { getDatabase, ref, get, child } from "firebase/database"
 import "../../css/assignmentStyle.css";
 
-export default class Assignments extends Component {
+export default class Assignments2 extends Component {
     constructor(props) {
         super(props);
         this.state = { assignmentsList: [] }
