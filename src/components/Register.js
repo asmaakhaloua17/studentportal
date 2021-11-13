@@ -14,7 +14,7 @@ export default class Register extends Component {
     super(props);
 
     this.state = {
-      uFirstName: "",
+      uFullName: "",
       uEuid: "",
       uDateOfBirth: "",
       uPassword: "",
@@ -23,7 +23,7 @@ export default class Register extends Component {
         dateOfBirth: "",
         password: "",
         passwordConfirm: "",
-        firstname: "",
+        fullName: "",
         euid: "",
       },
       dateOfBirthValid: false,
@@ -40,15 +40,15 @@ export default class Register extends Component {
       errorlist += "\n Please enter euid : it is too short.";
      
     }
-    if (this.state.uFirstName.length === 0) {
+    if (this.state.uFullName.length === 0) {
     
-      errorlist += "\n Please enter FirstName : it is too short.";
+      errorlist += "\n Please enter FullName : it is too short.";
     } else {
       const db = getDatabase();
       bcrypt.hash(this.state.uPassword, 12).then((hashpassword) => {
         set(ref(db, "users/" + this.state.uEuid), {
           euid: this.state.uEuid,
-          firstname: this.state.uFirstName,
+          fullName: this.state.uFullName,
           dateofbirth: this.state.uDateOfBirth,
           password: hashpassword,
         })
@@ -77,7 +77,7 @@ export default class Register extends Component {
     let fieldValidationErrors = this.state.formErrors;
     let dbValid = this.state.uDateOfBirth;
     let passwordValid = this.state.uPassword;
-    let firstnameValid = this.state.uFirstName;
+    let fullNameValid = this.state.uFullName;
     let euidValid = this.state.uEuid;
 
     switch (fieldName) {
@@ -105,10 +105,10 @@ export default class Register extends Component {
         passwordValid = value.length >= 6;
         fieldValidationErrors.password = passwordValid ? "" : " is too short";
         break;
-      case "uFirstName":
-        firstnameValid = value.length > 0;
+      case "uFullName":
+        fullNameValid = value.length > 0;
 
-        fieldValidationErrors.firstname = firstnameValid
+        fieldValidationErrors.fullName = fullNameValid
           ? ""
           : " can not be empty";
         break;
@@ -152,15 +152,15 @@ export default class Register extends Component {
                 <div className="w-100 text-center mt-2 text-danger" id="errorMessage" ></div>
                   <Form>
                     <Form.Group
-                      id="firstname"
+                      id="fullName"
                       className={`${this.errorClass(
-                        this.state.formErrors.firstname
+                        this.state.formErrors.fullName
                       )}`}
                     >
-                      <Form.Label>First Name</Form.Label>
+                      <Form.Label>Full Name</Form.Label>
                       <Form.Control
                         type="text"
-                        name="uFirstName"
+                        name="uFullName"
                         required
                         onChange={this.handleUserInput}
                       ></Form.Control>

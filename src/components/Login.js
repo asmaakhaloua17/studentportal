@@ -11,18 +11,17 @@ export default function LogIn() {
   const [uPassword, setuPassword] = useState("");
   const history = useHistory();
 
-  function clearError() {
+  function clearErrorMessage() {
     var error = document.getElementById("errorMessage");
     error.textContent = "";
   }
 
-  function handleLoginUser() {
-    const dbRef = ref(getDatabase());
-   
-    get(child(dbRef, "users/" + uEuid))
-      .then((snapshot) => {
-        // checks if euid is in database
-        if (snapshot.exists()) {
+  function invalidLoginMessage(){
+    var error = document.getElementById("errorMessage");
+    error.textContent = "Invalid Login";
+    console.log("Invalid Login");
+  }
+
           // checks password match, if true then redirects to dashboard
           bcrypt.compare(
             uPassword,
@@ -46,9 +45,7 @@ export default function LogIn() {
               }// if(result)
               // if password does not match, error messages displayed
               else {
-                var error = document.getElementById("errorMessage");
-                error.textContent = "Incorrect Password. Please try again.";
-                console.log("Incorrect password");
+                invalidLoginMessage();
               }
             }
           );
@@ -59,9 +56,7 @@ export default function LogIn() {
         }
         // if euid is not found in database, error message is displayed
         else {
-          var error = document.getElementById("errorMessage");
-          error.textContent = "Incorrect EUID. Please try again.";
-          console.log("EUID not found");
+          invalidLoginMessage();
         }
       })
       .catch((error) => {
@@ -94,7 +89,7 @@ export default function LogIn() {
                     required
                     onChange={(e) => {
                       setuEuid(e.target.value);
-                      clearError();
+                      clearErrorMessage();
                     }}
                   ></Form.Control>
                 </Form.Group>
@@ -106,7 +101,7 @@ export default function LogIn() {
                     required
                     onChange={(e) => {
                       setuPassword(e.target.value);
-                      clearError();
+                      clearErrorMessage();
                     }}
                   ></Form.Control>
                 </Form.Group>
