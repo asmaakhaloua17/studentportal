@@ -2,6 +2,7 @@
   "name": "studentportal",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https//studentportalunt.com",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/react-fontawesome": "^0.1.16",
