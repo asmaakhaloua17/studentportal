@@ -178,3 +178,9 @@ border-right: 1px solid #c6c1c1;
 {
     float: left;
 }
+.nav-link-logout
+{
+    right: 45px;
+ position: absolute;
+    
+}

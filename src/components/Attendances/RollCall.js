@@ -29,17 +29,17 @@ export default class RollCall extends Component {
   }
  //method to update the state variables with the user selection
  getListofstudents = (e) => {
-  const name = e.target.name;
+ 
 
-  const value = e.target.value;
+  const classID = e.target.value;
 
-  this.setState({ [name]: value });
-
-
+  this.setState({ classID: classID });
+  this.setState({studentList: [] });
+console.log("get student of  :"+classID);
   //get list of student of the selected class
   const dbRef = ref(getDatabase());
   let studentList = [];
-  get(child(dbRef, "classes/"+this.state.classID+"/students"))
+  get(child(dbRef, "classes/"+classID+"/students"))
   .then(
     (snapshot) => {
       if (snapshot.exists()) {
@@ -155,7 +155,7 @@ return firstName;
     return (
       <div>
      
-      <Sidenav role="teacher"  euid={this.props.match.params.euid}/>
+      <Sidenav role="teacher"  euid={this.props.match.params.teacherID}/>
       <Container>
         <Row className="theme_body">
           <Col>
@@ -167,7 +167,7 @@ return firstName;
       <div>
         
 
-<Form.Group id="classID">
+<Form.Group id="classID" Style=" margin-bottom: 14px;">
                   
                 
                 <Form.Select  name= "classID" aria-label="dropdown list of classes"   onChange={this.getListofstudents} required>
@@ -178,7 +178,7 @@ return firstName;
                   </Form.Group>
                   
                
-        <Table striped bordered hover size="sm">
+        <Table striped bordered hover size="sm" >
           <thead>
             <tr>
           

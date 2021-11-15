@@ -123,7 +123,11 @@ let currentuser =this.state.currentuser;
         <NavDropdown title="Assignments" id="basic-nav-dropdown">
            {listassignments} 
         </NavDropdown>
-        <Nav.Link href="#home">Attendance</Nav.Link>
+        <Nav.Link href="#">Attendance</Nav.Link>
+ 
+        <Nav.Link className="nav-link-logout"><Link to={`/`}>
+   Logout
+ </Link></Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
