@@ -11,6 +11,7 @@ import {
 import "../../firebase";
 import { getDatabase, ref, get, child, set, remove } from "firebase/database";
 import ColorPicker from "../Tools/ColorPicker";
+import {Link} from 'react-router-dom';
 
 export default class ManageClasses extends Component {
   constructor(props) {
@@ -195,9 +196,15 @@ export default class ManageClasses extends Component {
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>{" "}
                       Update
                     </Dropdown.Item>
-                    <Dropdown.Item eventKey="1">
+                    <Dropdown.Item eventKey="2">
                       <i class="fa fa-address-book" aria-hidden="true"></i> Add
                       Student
+                    </Dropdown.Item>
+                    <Dropdown.Item eventKey="3">
+                      <i class="fa fa-address-book" aria-hidden="true"></i>
+                      <Link to={`/manageModules/`+class_item.classID+`/`+this.props.teacherID}>
+                      Manage Modules
+ </Link> 
                     </Dropdown.Item>
                     <Dropdown.Item
                       eventKey="2"

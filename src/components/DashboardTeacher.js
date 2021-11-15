@@ -24,7 +24,7 @@ Aww yeah, you successfully read this important alert message.
 </p>
 <hr/>
 <div className="d-flex justify-content-end">
-<Button variant="primary"><Link to={`/rollCall}`}  className="white">
+<Button variant="primary"><Link to={`/rollCall/${this.props.match.params.euid}`}  className="white">
 <i class="fa fa-hand-paper-o" aria-hidden="true"></i> Roll Call
           </Link></Button> <Button variant="primary"><Link className="white" to={`/newClass/${this.props.match.params.euid}`}>
           <i class="fa fa-plus-circle" aria-hidden="true"></i> Manage Classes

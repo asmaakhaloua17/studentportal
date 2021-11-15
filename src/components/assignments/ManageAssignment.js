@@ -8,7 +8,7 @@ import {
   Form,
 } from "react-bootstrap";
 import "../../firebase";
-import { getDatabase, ref, get, child, set } from "firebase/database";
+import { getDatabase, ref, get, child, set, remove } from "firebase/database";
 
 
 export default class ManageAssignment extends Component {
@@ -62,22 +62,46 @@ export default class ManageAssignment extends Component {
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
+
+   //method to remove class to the database
+   handleRemoveClass = (assignmentID) => {
+    const db = getDatabase();
+    ///
+
+    if (window.confirm("Are you sure you wish to delete this item?")) {
+      remove(ref(db, "assignments/" + assignmentID))
+        .then(() => {
+          window.location.reload(false);
+          document.getElementById("feedback").style.display = "block";
+          document.getElementById("feedback").innerText =
+            "Assignment " + assignmentID + " remove successfully!";
+        })
+        .catch((error) => {
+          console.log(
+            "Failed to remove class :" + assignmentID + " error :" + error
+          );
+        });
+    }
+
+    ///
+  };
   //method to update assignment to the database
   handleUpdateAssignment = (assignmentid) => {
+   //alert(document.getElementById('duedate_Val').value);
     const db = getDatabase();
     set(ref(db, "assignments/" + assignmentid), {
       assignmentID:assignmentid,
-      description: document.getElementById('description_Val'+assignmentid).value,
-      dueDate:document.getElementById('duedate_Val'+assignmentid).innerText,
-      title:document.getElementById('title_Val'+assignmentid).value,
+      description: document.getElementById('description_Val').value,
+      dueDate:document.getElementById('duedate_Val').value,
+      title:document.getElementById('title_Val').value,
       published:1,
-      points: document.getElementById('points_Val'+assignmentid).value,
-      summary: document.getElementById('summary_Val'+assignmentid).value,
-      classID: document.getElementById('classID_val'+assignmentid).value,
-      teacherID: this.props.teacherID
+      points: document.getElementById('points_Val').value,
+      summary: document.getElementById('summary_Val').value,
+      classID: document.getElementById('classID_Val').value,
+      teacher: this.props.teacherID
     })
       .then(() => {
-        window.location.reload(false);
+       // window.location.reload(false);
       })
       .catch((error) => {
         console.log("Failed to save data new class!" + error);
@@ -191,7 +215,7 @@ export default class ManageAssignment extends Component {
                       Update
                     </Dropdown.Item>
                    
-                    <Dropdown.Item eventKey="2">
+                    <Dropdown.Item eventKey="2"    onClick={() => this.handleRemoveClass(assignment_item.assignmentID)}>
                       <i class="fa fa-trash" aria-hidden="true"></i> Delete
                     </Dropdown.Item>
                   </DropdownButton>
@@ -212,8 +236,8 @@ export default class ManageAssignment extends Component {
                   <Form.Control
                       type="text"
                       name="classID"
-                      id= "classID_Val"{...assignment_item.assignmentID}
-                      value= {assignment_item.classID}
+                      id= "classID_Val"
+                      defaultValue= {assignment_item.classID}
                       required
                       onChange={this.handleAssignmentInput}
                       readOnly="true"
@@ -225,8 +249,8 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       type="text"
                       name="title"
-                      id= "title_Val"{...assignment_item.assignmentID}
-                      value= {assignment_item.title}
+                      id= "title_Val"
+                      defaultValue= {assignment_item.title}
                       required
                       onChange={this.handleAssignmentInput}
                       readOnly={
@@ -239,8 +263,8 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       type="text"
                       name="description"
-                      id= "description_Val"{...assignment_item.assignmentID}
-                      value= {assignment_item.description}
+                      id= "description_Val"
+                      defaultValue= {assignment_item.description}
                       required
                       onChange={this.handleAssignmentInput}
                       readOnly={
@@ -253,9 +277,9 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       as="textarea"
                       name="summary"
-                      id= "summary_Val"{...assignment_item.assignmentID}
+                      id= "summary_Val"
                       style={{ height: '100px' }}
-                      value= {assignment_item.summary}
+                      defaultValue= {assignment_item.summary}
                       required
                       onChange={this.handleAssignmentInput}
                       readOnly={
@@ -268,8 +292,8 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       type="date"
                       name="duedate"
-                      id= "duedate_Val"{...assignment_item.assignmentID}
-                      value= {assignment_item.dueDate}
+                      id= "duedate_Val"
+                      defaultValue= {assignment_item.dueDate}
                       required
                       onChange={this.handleAssignmentInput}
                       readOnly={
@@ -282,8 +306,8 @@ export default class ManageAssignment extends Component {
                     <Form.Control
                       type="text"
                       name="points"
-                      id= "points_Val"{...assignment_item.assignmentID}
-                      value= {assignment_item.points}
+                      id= "points_Val"
+                      defaultValue= {assignment_item.points}
                       required
                       onChange={this.handleAssignmentInput}
                       readOnly={
@@ -295,16 +319,13 @@ export default class ManageAssignment extends Component {
 
 <Form.Check
         type="checkbox"
-        id= "published"{...assignment_item.assignmentID}
+        id= "published"
         className="mb-2"
         label="Published"
       />
   </Form.Group>
-                
-                </Form>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button    disabled={
+  <Form.Group>
+  <Button    disabled={
                         this.state.actionType === "update" ? false : true
                       }
                       variant="primary"
@@ -312,7 +333,11 @@ export default class ManageAssignment extends Component {
                     >
                       Save Changes
                     </Button>
-                  </Modal.Footer>
+  </Form.Group>
+                
+                </Form>
+                  </Modal.Body>
+                
                 </Modal>
               </tr>
             ))}

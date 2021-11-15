@@ -13,6 +13,8 @@ import AssignmentList from "./Assignments/AssignmentList";
 import PeopleByClass from "./Attendances/PeopleByClass";
 import AttendanceByClass from "./Attendances/AttendanceByClass";
 import AssignmentNew from "./Assignments/AssignmentNew";
+import ModuleNew from "./Modules/ModuleNew";
+import RollCall from "./Attendances/RollCall";
 
 function App() {
   return (
@@ -27,12 +29,13 @@ function App() {
       <Route path="/classDetails/:classId/:euid" component={ClassDetails}/>
       <Route path="/newClass/:euid/" component={ClassNew}/>
       <Route path="/manageAssignment/:euid/" component={AssignmentNew}/>
-
+      <Route path="/manageModules/:classID/:teacherID/" component={ModuleNew}/>
       <Route path="/assignmentDetails/:assignmentID/:classId/:euid" component={AssignmentDetails} />
       <Route path="/assignmentListsByClass/:classId/:euid" component={AssignmentList} />
       <Route path="/attendances/:classId/:euid" component={AttendanceByClass} />
       <Route path="/people/:classId/:euid" component={PeopleByClass} />
       <Route path="/Grades/:classId/:euid" component={Grades}/>
+      <Route path="/rollCall/:teacherID/" component={RollCall}/>
       <Route component={Error} />
     </Switch>
 

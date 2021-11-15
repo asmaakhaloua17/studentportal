@@ -129,7 +129,7 @@ export default class AssignmentNew extends Component {
               {" "}
               <div className="big-title">
                 <h3 className="big_title">New Assignments</h3>
-                {this.state.description}
+         
                 <Form  onSubmit={this.handleAddAssignment}>
                 <Form.Group id="classID">
                   
