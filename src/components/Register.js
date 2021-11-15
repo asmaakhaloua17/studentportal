@@ -135,7 +135,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <>
+     <div>
         <Container className="d-flex align-item-center justify-content-center">
           <div className="w-100" style={{ maxWidth: "400px" }}>
             <img
@@ -244,7 +244,7 @@ export default class Register extends Component {
             </Card>
           </div>
         </Container>
-      </>
+    </div>
     );
   }
 }

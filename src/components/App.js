@@ -2,7 +2,7 @@ import React  from "react";
 import Register from "./Register";
 import Login from "./Login";
 import RessourceDetail from "./Modules/Ressources/RessourceDetail";
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, HashRouter  as Router} from 'react-router-dom';
 import Dashboard from "./Dashboard";
 import ClassDetails from "./Classes/ClassDetails";
 import AssignmentDetails from "./Assignments/AssignmentDetails";
@@ -19,8 +19,10 @@ import RollCall from "./Attendances/RollCall";
 function App() {
   return (
 
-  
-    <Switch>
+    <div className="App">
+      
+      <Router>
+ <Switch>
       <Route path="/" component={Login} exact/>
       <Route path="/Register" component={Register}/>
       <Route path="/Dashboard/:euid" component={Dashboard}/>
@@ -36,9 +38,11 @@ function App() {
       <Route path="/people/:classId/:euid" component={PeopleByClass} />
       <Route path="/Grades/:classId/:euid" component={Grades}/>
       <Route path="/rollCall/:teacherID/" component={RollCall}/>
-      <Route component={Error} />
+   
     </Switch>
-
+</Router>
+    </div>
+   
  
     
   )
