@@ -205,7 +205,7 @@ export default class AssignmentNew extends Component {
         label="Published"
       />
   </Form.Group>
-                  <Form.Group id="action">
+                  <Form.Group id="action" Style="padding-left: 15px">
                     <Button
                       className="w-100 btn-secondary"
                       size="lm"
