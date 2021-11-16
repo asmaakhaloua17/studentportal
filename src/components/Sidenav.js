@@ -85,13 +85,9 @@ let currentuser =this.state.currentuser;
     );  
  //create nav nodes for assignments
  const listassignments = this.state.assignmentList.map((assignment_item) =>
- <NavDropdown.Item 
- 
-   key={assignment_item.assignmentID}>
-     {<Link to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}/${assignment_item.teacher}`}>
+<Link to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}/${assignment_item.teacher}`}>
        {assignment_item.title} -- Section {assignment_item.className} {assignment_item.section} - {assignment_item.courseName}
-     </Link>}
- </NavDropdown.Item>
+     </Link>
  
 );
         return (
