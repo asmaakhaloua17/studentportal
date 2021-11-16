@@ -3,13 +3,13 @@ import { initializeApp } from 'firebase/app';
 
 
   const firebaseConfig = {
-    apiKey: "AIzaSyDXkzLfPAgUllqviplE_qiQOO06EhCf1tU",
-    authDomain: "student-portal-prod-7827d.firebaseapp.com",
-    databaseURL: "https://student-portal-prod-7827d-default-rtdb.firebaseio.com",
-    projectId: "student-portal-prod-7827d",
-    storageBucket: "student-portal-prod-7827d.appspot.com",
-    messagingSenderId: "672147118793",
-    appId: "1:672147118793:web:e2317e9719656541c84b18"
+    apiKey: "AIzaSyBKrmU5GrPvh5OgcwUkU3dY-tz6na-SFFQ",
+    authDomain: "studentportal-d9b8c.firebaseapp.com",
+    databaseURL: "https://studentportal-d9b8c-default-rtdb.firebaseio.com",
+    projectId: "studentportal-d9b8c",
+    storageBucket: "studentportal-d9b8c.appspot.com",
+    messagingSenderId: "544699300970",
+    appId: "1:544699300970:web:ad86be64ecde5faf915e13"
   };
   
 
