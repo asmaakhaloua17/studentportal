@@ -45,6 +45,9 @@ export default class Register extends Component {
       errorlist += "\n Please enter FullName : it is too short.";
     } else {
       const db = getDatabase();
+
+      //check if the user is already in database, 
+      
       bcrypt.hash(this.state.uPassword, 12).then((hashpassword) => {
         set(ref(db, "users/" + this.state.uEuid), {
           euid: this.state.uEuid,

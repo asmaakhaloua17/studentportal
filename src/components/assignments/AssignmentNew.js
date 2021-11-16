@@ -125,7 +125,7 @@ export default class AssignmentNew extends Component {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col Style="Background:#eee">
               {" "}
               <div className="big-title">
                 <h3 className="big_title">New Assignments</h3>
