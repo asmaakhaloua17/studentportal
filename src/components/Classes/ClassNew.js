@@ -154,7 +154,7 @@ export default class ClassNew extends Component {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col Style="Background:#eee">
               {" "}
               <div className="big-title">
                 <h3 className="big_title">New Classes</h3>
