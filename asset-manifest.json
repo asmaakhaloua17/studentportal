@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/studentportal/static/css/main.2b0d3935.chunk.css",
-    "main.js": "/studentportal/static/js/main.7f480a0b.chunk.js",
-    "main.js.map": "/studentportal/static/js/main.7f480a0b.chunk.js.map",
+    "main.css": "/studentportal/static/css/main.197bef1b.chunk.css",
+    "main.js": "/studentportal/static/js/main.f8547134.chunk.js",
+    "main.js.map": "/studentportal/static/js/main.f8547134.chunk.js.map",
     "runtime-main.js": "/studentportal/static/js/runtime-main.5c16954b.js",
     "runtime-main.js.map": "/studentportal/static/js/runtime-main.5c16954b.js.map",
     "static/css/2.8988c0b9.chunk.css": "/studentportal/static/css/2.8988c0b9.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.c6325747.chunk.js.map": "/studentportal/static/js/2.c6325747.chunk.js.map",
     "index.html": "/studentportal/index.html",
     "static/css/2.8988c0b9.chunk.css.map": "/studentportal/static/css/2.8988c0b9.chunk.css.map",
-    "static/css/main.2b0d3935.chunk.css.map": "/studentportal/static/css/main.2b0d3935.chunk.css.map",
+    "static/css/main.197bef1b.chunk.css.map": "/studentportal/static/css/main.197bef1b.chunk.css.map",
     "static/js/2.c6325747.chunk.js.LICENSE.txt": "/studentportal/static/js/2.c6325747.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/studentportal/static/media/fontawesome-webfont.f691f37e.woff",
     "static/media/logo-nav.2c59ed9d.png": "/studentportal/static/media/logo-nav.2c59ed9d.png",
@@ -20,7 +20,7 @@
     "static/js/runtime-main.5c16954b.js",
     "static/css/2.8988c0b9.chunk.css",
     "static/js/2.c6325747.chunk.js",
-    "static/css/main.2b0d3935.chunk.css",
-    "static/js/main.7f480a0b.chunk.js"
+    "static/css/main.197bef1b.chunk.css",
+    "static/js/main.f8547134.chunk.js"
   ]
 }
