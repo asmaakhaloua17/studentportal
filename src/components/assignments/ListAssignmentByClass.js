@@ -66,7 +66,7 @@ export default class ListAssignmentByClass extends Component {
                 {assignment_item.title}
          </Link>
          <br/>
-         <i className="fa fa-calendar-plus-o"></i> Due Date :  <span Style="color:red">{assignment_item.dueDate}</span>|  Possible points :{assignment_item.points} 
+         <i className="fa fa-calendar-plus-o"></i> Due Date :  <span Style="color:black;">{assignment_item.dueDate}</span>|  Possible points :{assignment_item.points} 
           </ListGroup.Item>
         </ListGroup>
             </div>

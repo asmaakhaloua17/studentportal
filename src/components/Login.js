@@ -81,7 +81,7 @@ export default function LogIn() {
             className="logo mx-auto d-block mb-3 mt-3"
             alt="Portal logo"
           ></img>
-          <main>
+          
           <Card className="login">
             <Card.Body>
               <div class="shadow p-2 mb-3 bg-primary text-center text-white">
@@ -138,7 +138,6 @@ export default function LogIn() {
               </div>
             </Card.Body>
           </Card>
-          </main>
         </div>
       </Container>
     </>
