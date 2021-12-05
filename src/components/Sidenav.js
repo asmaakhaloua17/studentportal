@@ -85,10 +85,8 @@ let currentuser =this.state.currentuser;
     );  
  //create nav nodes for assignments
  const listassignments = this.state.assignmentList.map((assignment_item) =>
- <NavDropdown.Item 
- 
-   key={assignment_item.assignmentID}>
-     {<Link to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}/${assignment_item.teacher}`}>
+ <NavDropdown.Item href="#">
+     {<Link className="dropdown-item" to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}/${assignment_item.teacher}`}>
        {assignment_item.title} -- Section {assignment_item.className} {assignment_item.section} - {assignment_item.courseName}
      </Link>}
  </NavDropdown.Item>
@@ -102,14 +100,14 @@ let currentuser =this.state.currentuser;
 <Navbar bg="light" expand="lg" className="nav-portal">
   <Container>
     
-    <Navbar.Brand href="#"><img src={logo} alt="logo" className="nav-logo"></img></Navbar.Brand>
+    <Navbar.Brand href="#"><img src={logo} alt="portal logo" className="nav-logo"></img></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
        
-        <Nav.Link href="#"><Link to={`/`+this.state.dashboardlink+`/`+this.props.euid}>
+       <Link to={`/`+this.state.dashboardlink+`/`+this.props.euid} className="nav-link-selected">
    Dashboard
- </Link></Nav.Link>
+ </Link>
     
         
          
@@ -120,14 +118,16 @@ let currentuser =this.state.currentuser;
         <NavDropdown title="Classes" id="basic-nav-dropdown">
            {listclasses} 
         </NavDropdown>
-        <NavDropdown title="Assignments" id="basic-nav-dropdown">
+        <NavDropdown title="Assignments" id="basic-nav-dropdown2">
            {listassignments} 
         </NavDropdown>
-        <Nav.Link href="#">Attendance</Nav.Link>
- 
-        <Nav.Link className="nav-link-logout"><Link to={`/`}>
+    
+     <Link to={`/`}  className="nav-link">
+     Attendance
+   </Link>
+       <Link to={`/`}  className="nav-link-logout">
    Logout
- </Link></Nav.Link>
+ </Link>
       </Nav>
     </Navbar.Collapse>
   </Container>

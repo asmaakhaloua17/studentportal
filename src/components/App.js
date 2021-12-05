@@ -18,7 +18,7 @@ import RollCall from "./Attendances/RollCall";
 
 function App() {
   return (
-
+<main>
     <div className="App">
       
       <Router>
@@ -42,7 +42,7 @@ function App() {
     </Switch>
 </Router>
     </div>
-   
+    </main>
  
     
   )
