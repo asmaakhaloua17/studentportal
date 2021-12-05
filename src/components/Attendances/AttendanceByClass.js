@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import Footer from "../Footer";
 import Sidenav from "../Sidenav";
 import ClassNav from "../Classes/ClassNav";
@@ -52,9 +52,34 @@ export default class AttendanceByClass extends Component {
             </Col>
             <Col> <h3 className="big_title">Attendances for {this.state.classTitle} Section {this.state.classSection}</h3>
            
-         TODO
+            
+            <Col lg= {6} md ={12}>
+                <Table striped hover size ="sm" className="gradesTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12/12/1212</td>
+                            <td>Present</td>
+                        </tr>
+                        <tr>
+                            <td>Two</td>
+                            <td>temp</td>
+                        </tr>
+                        <tr>
+                            <td>Three</td>
+                            <td>temp</td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </Col>
             </Col>
           </Row>
+
           <Row>
             <Footer></Footer>
           </Row>

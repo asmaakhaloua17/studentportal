@@ -2,9 +2,9 @@ import { React, useState, Component }  from "react";
 import Sidenav from "../Sidenav";
 import Footer from "../Footer";
 import ClassNav from "../Classes/ClassNav";
-import { Container, Row, Col , Table, Card} from "react-bootstrap";
+import { Container, Row, Col , Table, Card, ProgressBar} from "react-bootstrap";
 import { getDatabase, ref, get, child } from "firebase/database";
-//import { Link, useHistory } from "react-router-dom";
+import "../../firebase";
 import "../../css/style.css";
 
 
@@ -12,9 +12,11 @@ export default class Grades extends Component {
     constructor(props) {
         super(props);
         this.state = { classTitle: "" ,classSection :"" };
+        this.state = { gradesList : [] };
       }
       componentDidMount() {
         const dbRef = ref(getDatabase());
+        let gradesList = [];
     
         //get  class title
         get(child(dbRef, "classes/" + this.props.match.params.classId))
@@ -30,6 +32,25 @@ export default class Grades extends Component {
                 }
               } else {
                 console.log("No data available");
+              }
+            },
+            {
+              onlyOnce: true,
+            }
+          )
+          .catch((error) => {
+            console.error(error);
+          });
+          // get assignments
+          get(child(dbRef, "grades/" + this.props.match.params.classId + "/" + this.props.match.params.euid))
+          .then(
+            (snapshot) => {
+              if (snapshot.exists()) {
+                console.log("success");            
+
+              } else {
+                console.log(this.props.match.params.classId + this.props.match.params.euid);
+                console.log("No grades available");
               }
             },
             {
@@ -91,8 +112,15 @@ export default class Grades extends Component {
             </Col>
             <Col lg={{ span: 4 , offset: 1 }} md={12}>
                 <Card>
-                <h4>Grade Distribution</h4>
-                
+                <h4 className="mb-2 mt-2">Grade Distribution</h4>
+                  <h5>A</h5>
+                  <ProgressBar now={60} label="5" className="mb-2"/>
+                  <h5>B</h5>
+                  <ProgressBar now={70} label="8" className="mb-2"/>
+                  <h5>C</h5>
+                  <ProgressBar now={30} label="3" className="mb-2"/>
+                  <h5>F</h5>
+                  <ProgressBar now={10} label="1" className="mb-4"/>
                 </Card>
             </Col>
             </Row>
