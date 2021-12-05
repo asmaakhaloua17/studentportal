@@ -73,7 +73,6 @@ export default function LogIn() {
   return (
     
     <>
-    <noscript>Javascript must be enabled to run this app</noscript>
     {}
       <Container className="d-flex align-item-center justify-content-center">
         <div className="w-100" style={{ maxWidth: "400px" }}>
@@ -82,7 +81,7 @@ export default function LogIn() {
             className="logo mx-auto d-block mb-3 mt-3"
             alt="Portal logo"
           ></img>
-
+          <main>
           <Card className="login">
             <Card.Body>
               <div class="shadow p-2 mb-3 bg-primary text-center text-white">
@@ -90,9 +89,10 @@ export default function LogIn() {
               </div>
               <div className="body">
                 <Form.Group id="euid">
-                  <Form.Label>EUID</Form.Label>
+                  <Form.Label for="uEUID">EUID</Form.Label>
                   <Form.Control
                     type="text"
+                    id = "uEUID"
                     required
                     placeholder="EUID"
                     onChange={(e) => {
@@ -103,9 +103,10 @@ export default function LogIn() {
                 </Form.Group>
 
                 <Form.Group id="password">
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label for="uPassword">Password</Form.Label>
                   <Form.Control
                     type="password"
+                    id = "uPassword"
                     required
                     placeholder="Password"
                     onChange={(e) => {
@@ -137,6 +138,7 @@ export default function LogIn() {
               </div>
             </Card.Body>
           </Card>
+          </main>
         </div>
       </Container>
     </>
