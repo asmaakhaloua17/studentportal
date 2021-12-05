@@ -71,8 +71,9 @@ export default function LogIn() {
   } //function handleLoginUser()
 
   return (
-
+    
     <>
+    <noscript>Javascript must be enabled to run this app</noscript>
     {}
       <Container className="d-flex align-item-center justify-content-center">
         <div className="w-100" style={{ maxWidth: "400px" }}>
@@ -85,7 +86,7 @@ export default function LogIn() {
           <Card className="login">
             <Card.Body>
               <div class="shadow p-2 mb-3 bg-primary text-center text-white">
-                <h2>Login</h2>
+                <h1>Login</h1>
               </div>
               <div className="body">
                 <Form.Group id="euid">
@@ -93,6 +94,7 @@ export default function LogIn() {
                   <Form.Control
                     type="text"
                     required
+                    placeholder="EUID"
                     onChange={(e) => {
                       setuEuid(e.target.value);
                       clearErrorMessage();
@@ -105,6 +107,7 @@ export default function LogIn() {
                   <Form.Control
                     type="password"
                     required
+                    placeholder="Password"
                     onChange={(e) => {
                       setuPassword(e.target.value);
                       clearErrorMessage();
