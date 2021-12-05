@@ -149,7 +149,7 @@ export default class Register extends Component {
             <Card className="login">
               <Card.Body>
                 <div class="shadow p-2 mb-3 bg-primary text-center text-white">
-                  <h2>Register</h2>
+                  <h1 Style="font-size:26px">Register</h1>
                 </div>
                 <div className="body">
                 <div className="w-100 text-center mt-2 text-danger" id="errorMessage" ></div>
@@ -160,9 +160,10 @@ export default class Register extends Component {
                         this.state.formErrors.fullName
                       )}`}
                     >
-                      <Form.Label>Full Name</Form.Label>
+                      <Form.Label for="uFullName">Full Name</Form.Label>
                       <Form.Control
                         type="text"
+                        id="uFullName"
                         name="uFullName"
                         required
                         onChange={this.handleUserInput}
@@ -174,9 +175,10 @@ export default class Register extends Component {
                         this.state.formErrors.euid
                       )}`}
                     >
-                      <Form.Label>EUID</Form.Label>
+                      <Form.Label for="uEuid">EUID</Form.Label>
                       <Form.Control
                         type="text"
+                        id="uEuid"
                         name="uEuid"
                         required
                         onChange={this.handleUserInput}
@@ -188,9 +190,10 @@ export default class Register extends Component {
                         this.state.formErrors.dateOfBirth
                       )}`}
                     >
-                      <Form.Label>Date of Birth</Form.Label>
+                      <Form.Label for="uDateOfBirth">Date of Birth</Form.Label>
                       <Form.Control
                         type="date"
+                        id="uDateOfBirth"
                         name="uDateOfBirth"
                         required
                         onChange={this.handleUserInput}
@@ -202,9 +205,10 @@ export default class Register extends Component {
                         this.state.formErrors.password
                       )}`}
                     >
-                      <Form.Label>Password</Form.Label>
+                      <Form.Label for="uPassword">Password</Form.Label>
                       <Form.Control
                         type="password"
+                        id="uPassword"
                         name="uPassword"
                         required
                         onChange={this.handleUserInput}
@@ -216,9 +220,10 @@ export default class Register extends Component {
                         this.state.formErrors.passwordConfirm
                       )}`}
                     >
-                      <Form.Label>Password Confirmation</Form.Label>
+                      <Form.Label for="uCPassword">Password Confirmation</Form.Label>
                       <Form.Control
                         type="password"
+                        id="uCPassword"
                         name="uCPassword"
                         required
                         onChange={this.handleUserInput}

@@ -54,14 +54,14 @@ export default class ClassItem extends Component {
                 
                 <Card style={{ width: '18rem','marginRight': '20px' }}>
                   
-  <Card.Img variant="top" className="class_img" Style={"Background-color:"+class_item.classColor}  />
+  <Card.Img variant="top" alt="Class" className="class_img" Style={"Background-color:"+class_item.classColor}  />
   <Card.Body>
     <Card.Title>{class_item.name}</Card.Title>
     <Card.Text>
     {class_item.description}
     </Card.Text>
     <Button variant="primary class-more-btn"><Link to={`/classDetails/${class_item.classID}/${this.props.euid}`}>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>  Access
+    <i class="fa fa-angle-double-right"></i>  Access
           </Link></Button>         
   </Card.Body>
 </Card>

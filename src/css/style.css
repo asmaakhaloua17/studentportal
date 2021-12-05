@@ -5,7 +5,7 @@ body{
     background-color: #6200EE!important;
 }
 
-.nav-portal .nav-link, .nav-portal .nav-link a {
+.nav-portal .nav-link, .nav-portal .nav-link a,.nav-link-selected,.nav-link-logout {
     color:#ffffff!important;
 }
 .theme_body
@@ -183,4 +183,9 @@ border-right: 1px solid #c6c1c1;
     right: 45px;
  position: absolute;
     
+}
+nav-link-selected
+{
+    text-decoration: underline;
+    padding-top: 7px!important;
 }

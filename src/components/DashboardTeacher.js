@@ -17,7 +17,7 @@ export default class DashboardTeacher extends Component {
             <div>
             <Col className="welcome_box">
 <Alert key="welcome" variant="secondary">
-<h4>Welcome</h4>
+<h1  Style="font-size:20px">Welcome</h1>
 <p>
 
 Aww yeah, you successfully read this important alert message.
@@ -25,12 +25,12 @@ Aww yeah, you successfully read this important alert message.
 <hr/>
 <div className="d-flex justify-content-end">
 <Button variant="primary"><Link to={`/rollCall/${this.props.match.params.euid}`}  className="white">
-<i class="fa fa-hand-paper-o" aria-hidden="true"></i> Roll Call
+<i class="fa fa-hand-paper-o"></i> Roll Call
           </Link></Button> <Button variant="primary"><Link className="white" to={`/newClass/${this.props.match.params.euid}`}>
-          <i class="fa fa-plus-circle" aria-hidden="true"></i> Manage Classes
+          <i class="fa fa-plus-circle" ></i> Manage Classes
           </Link></Button>
           <Button variant="primary"><Link className="white" to={`/manageAssignment/${this.props.match.params.euid}`}>
-          <i class="fa fa-plus-circle" aria-hidden="true"></i> Manage Assignments
+          <i class="fa fa-plus-circle" ></i> Manage Assignments
           </Link></Button>
         </div>
 
@@ -40,7 +40,7 @@ Aww yeah, you successfully read this important alert message.
 
               </div>
           <div className="big-title">
-		      <h3 className="big_title">Classes</h3>
+		      <h1 className="big_title">Classes</h1>
 			
                 <div> <ListClasses role="teacher" euid={this.props.match.params.euid}></ListClasses></div>
 </div>
