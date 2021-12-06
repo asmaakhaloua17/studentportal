@@ -53,6 +53,11 @@ export default class Grades extends Component {
           get(child(dbRef, "grades/" + this.props.match.params.classId + "/" + this.props.match.params.euid))
             .then(grade => {
                 if (grade.exists()) {
+                  numA = 0;
+                  numB = 0;
+                  numC = 0;
+                  numF = 0;
+                  gradesCount = 0;
                     grade.forEach(item => {
                         let itemVal = item.val();
                         gradeList.push(itemVal);
