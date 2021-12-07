@@ -83,8 +83,8 @@ export default class Sidenav extends Component {
           <Link
             to={`/classDetails/${class_item.classID}/${class_item.teacherID}`}
           >
-            {class_item.name} Section {class_item.section} -{" "}
-            {class_item.courseName}
+            {class_item.classID} - {class_item.name}
+            
           </Link>
         }
       </NavDropdown.Item>
@@ -97,8 +97,8 @@ export default class Sidenav extends Component {
             className="dropdown-item"
             to={`/assignmentDetails/${assignment_item.assignmentID}/${assignment_item.classID}/${assignment_item.teacher}`}
           >
-            {assignment_item.title} -- Section {assignment_item.className}{" "}
-            {assignment_item.section} - {assignment_item.courseName}
+            {assignment_item.title} - Due: {assignment_item.dueDate} - {assignment_item.classID}{" "}
+            
           </Link>
         }
       </NavDropdown.Item>
@@ -107,15 +107,17 @@ export default class Sidenav extends Component {
       <div id="slide-out" className="side-nav fixed">
         <Navbar bg="light" expand="lg" className="nav-portal">
           <Container>
-            <Navbar.Brand href="#">
+            <Navbar.Brand>
+              <Link to={`/` + this.state.dashboardlink + `/` + this.props.euid}>
               <img src={logo} alt="portal logo" className="nav-logo"></img>
+              </Link>
             </Navbar.Brand>
         
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <Link
                   to={`/` + this.state.dashboardlink + `/` + this.props.euid}
-                  className="nav-link-selected"
+                  className="nav-link"
                 >
                   Dashboard
                 </Link>
@@ -127,7 +129,7 @@ export default class Sidenav extends Component {
                   {listassignments}
                 </NavDropdown>
 
-                <Link to={`/`} className="nav-link">
+                <Link to={`/` + this.state.dashboardlink + `/` + this.props.euid} className="nav-link">
                   Attendance
                 </Link>
                 <Link to={`/`} className="nav-link-logout">
