@@ -106,7 +106,7 @@ export default class Grades extends Component {
             </Col>
 
             <Col>
-            <h3 className="big_title">{this.state.classTitle} Section {this.state.classSection}</h3>
+            <h3 className="big_title"> Grades for {this.state.classTitle} Section {this.state.classSection}</h3>
             <Row>
             <Col lg= {6} md ={12}>
               

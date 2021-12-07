@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import Footer from "../Footer";
 import Sidenav from "../Sidenav";
 import ClassNav from "../Classes/ClassNav";
 import { getDatabase, ref, get, child } from "firebase/database";
+import PeopleTableRows from "./PeopleTableRows";
 
 export default class PeopleByClass extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ export default class PeopleByClass extends Component {
     const dbRef = ref(getDatabase());
 
     //get  classe title
-
     get(child(dbRef, "classes/" + this.props.match.params.classId))
       .then(
         (snapshot) => {
@@ -51,8 +51,18 @@ export default class PeopleByClass extends Component {
               <ClassNav classId={this.props.match.params.classId} euid={this.props.match.params.euid} isActive="5"></ClassNav>
             </Col>
             <Col> <h3 className="big_title">People for {this.state.classTitle} Section {this.state.classSection}</h3>
-           
-         TODO
+            <Table striped hover size ="sm" className="gradesTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <PeopleTableRows classID={this.props.match.params.classId}></PeopleTableRows>
+                    </tbody>
+                </Table>
             </Col>
           </Row>
           <Row>
