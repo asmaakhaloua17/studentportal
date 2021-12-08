@@ -118,11 +118,7 @@ export default class Sidenav extends Component {
               <Nav.Link>
                 <Link
                   to={`/` + this.state.dashboardlink + `/` + this.props.euid}
-<<<<<<< HEAD
                  
-=======
-                  className="nav-link"
->>>>>>> f1118a2f38b0aa379aeb2e91391a877ce432a641
                 >
                   Dashboard
                 </Link></Nav.Link>
@@ -133,13 +129,8 @@ export default class Sidenav extends Component {
                 <NavDropdown title="Assignments" id="basic-nav-dropdown2">
                   {listassignments}
                 </NavDropdown>
-<<<<<<< HEAD
                 <Nav.Link>
-                <Link to={`/`} className="nav-link">
-=======
-
-                <Link to={`/` + this.state.dashboardlink + `/` + this.props.euid} className="nav-link">
->>>>>>> f1118a2f38b0aa379aeb2e91391a877ce432a641
+                <Link to={`/`}>
                   Attendance
                 </Link></Nav.Link>
                 <Link to={`/`} className="nav-link-logout">
