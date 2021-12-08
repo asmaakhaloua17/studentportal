@@ -54,11 +54,7 @@ export default class ClassItem extends Component {
                 
                 <Card style={{ width: '18rem','marginRight': '20px' }}>
                   
-<<<<<<< HEAD
-  <Card.Img variant="top" alt="" className="class_img" Style={"Background-color:"+class_item.classColor}  />
-=======
   <Card variant="top" alt="Class" className="class_img" Style={"Background-color:"+class_item.classColor} />
->>>>>>> f1118a2f38b0aa379aeb2e91391a877ce432a641
   <Card.Body>
     <Card.Title>{class_item.name}</Card.Title>
     <Card.Text>

@@ -116,7 +116,7 @@ export default class Sidenav extends Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
               <Nav.Link>
-                <Link
+                <Link Style="text-decoration:none!important"
                   to={`/` + this.state.dashboardlink + `/` + this.props.euid}
                  
                 >
@@ -130,7 +130,7 @@ export default class Sidenav extends Component {
                   {listassignments}
                 </NavDropdown>
                 <Nav.Link>
-                <Link to={`/`}>
+                <Link to={`/rollCall/` + this.props.euid} Style="text-decoration:none!important">
                   Attendance
                 </Link></Nav.Link>
                 <Link to={`/`} className="nav-link-logout">
