@@ -85,7 +85,7 @@ export default function LogIn() {
           <Card className="login">
             <Card.Body>
               <div class="shadow p-2 mb-3 bg-primary text-center text-white">
-                <h1>Login</h1>
+                <h1 Style="font-size:26px">Login</h1>
               </div>
               <div className="body">
                 <Form.Group id="euid">

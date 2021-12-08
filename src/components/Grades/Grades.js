@@ -6,17 +6,24 @@ import { Container, Row, Col , Table, Card, ProgressBar} from "react-bootstrap";
 import { getDatabase, ref, get, child } from "firebase/database";
 import "../../firebase";
 import "../../css/style.css";
-
+import GradesTableRows from "./GradesTableRows";
+let numA = 0;
+let numB = 0;
+let numC = 0;
+let numF = 0;
+let gradesCount = 0;
 
 export default class Grades extends Component {
     constructor(props) {
         super(props);
         this.state = { classTitle: "" ,classSection :"" };
         this.state = { gradesList : [] };
-      }
+        
+    }
       componentDidMount() {
         const dbRef = ref(getDatabase());
-        let gradesList = [];
+        let gradeList = [];
+        
     
         //get  class title
         get(child(dbRef, "classes/" + this.props.match.params.classId))
@@ -41,32 +48,55 @@ export default class Grades extends Component {
           .catch((error) => {
             console.error(error);
           });
-          // get assignments
-          get(child(dbRef, "grades/" + this.props.match.params.classId + "/" + this.props.match.params.euid))
-          .then(
-            (snapshot) => {
-              if (snapshot.exists()) {
-                console.log("success");            
 
-              } else {
-                console.log(this.props.match.params.classId + this.props.match.params.euid);
-                console.log("No grades available");
-              }
-            },
-            {
-              onlyOnce: true,
-            }
-          )
-          .catch((error) => {
-            console.error(error);
-          });
+          // get grades
+          get(child(dbRef, "grades/" + this.props.match.params.classId + "/" + this.props.match.params.euid))
+            .then(grade => {
+                if (grade.exists()) {
+                  numA = 0;
+                  numB = 0;
+                  numC = 0;
+                  numF = 0;
+                  gradesCount = 0;
+                    grade.forEach(item => {
+                        let itemVal = item.val();
+                        gradeList.push(itemVal);
+                        console.log(itemVal.title);
+                        console.log(itemVal.dueDate);
+                        console.log(itemVal.points);
+                        if(itemVal.points >= 90 ){ 
+                          numA++;
+                        }
+                        else if (itemVal.points >= 80){
+                          numB++;
+                        }
+                        else if(itemVal.points >= 70)
+                        {
+                          numC++;
+                        }
+                        else if(itemVal.points < 70)
+                        {
+                          numF++;
+                        }
+                        gradesCount++;
+                    });
+                    
+                    this.setState({ gradesList: gradeList });
+                } 
+                else {
+                    console.log("No grades found");
+                }
+            }, {
+                onlyOnce: true
+            }).catch(error => {
+                console.log(error);
+            });
       }
 
     render() {
     return(
         <>
         <Sidenav euid={this.props.match.params.euid} isActive="2"/>
-
         <Container>
 
           <Row className="theme_body">
@@ -76,51 +106,35 @@ export default class Grades extends Component {
             </Col>
 
             <Col>
-            <h3 className="big_title">{this.state.classTitle} Section {this.state.classSection}</h3>
+            <h3 className="big_title"> Grades for {this.state.classTitle} Section {this.state.classSection}</h3>
             <Row>
             <Col lg= {6} md ={12}>
-                <Table striped hover size ="sm" className="gradesTable">
+              
+            <Table striped hover size ="sm" className="gradesTable">
                     <thead>
                         <tr>
                             <th>Assignment Name</th>
                             <th>Due Date</th>
                             <th>Score</th>
-                            <th>Out of</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>One</td>
-                            <td>12/12/1212</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Two</td>
-                            <td>temp</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Three</td>
-                            <td>temp</td>
-                            <td>1</td>
-                            <td>1</td>
-                        </tr>
+                      <GradesTableRows classID={this.props.match.params.classId} euid={this.props.match.params.euid}></GradesTableRows>
                     </tbody>
-                </Table>
+            </Table>
+
             </Col>
             <Col lg={{ span: 4 , offset: 1 }} md={12}>
                 <Card>
                 <h4 className="mb-2 mt-2">Grade Distribution</h4>
                   <h5>A</h5>
-                  <ProgressBar now={60} label="5" className="mb-2"/>
+                  <ProgressBar now={(numA/gradesCount) * 100} label={numA} className="mb-2"/>
                   <h5>B</h5>
-                  <ProgressBar now={70} label="8" className="mb-2"/>
+                  <ProgressBar now={(numB/gradesCount) * 100} label={numB} className="mb-2"/>
                   <h5>C</h5>
-                  <ProgressBar now={30} label="3" className="mb-2"/>
+                  <ProgressBar now={(numC/gradesCount) * 100} label={numC} className="mb-2"/>
                   <h5>F</h5>
-                  <ProgressBar now={10} label="1" className="mb-4"/>
+                  <ProgressBar now={(numF/gradesCount) * 100} label={numF} className="mb-4"/>
                 </Card>
             </Col>
             </Row>

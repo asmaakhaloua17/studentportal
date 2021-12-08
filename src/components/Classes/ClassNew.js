@@ -161,29 +161,31 @@ export default class ClassNew extends Component {
               
                 <Form    onSubmit={this.handleAddClass}>
                 <Form.Group id="classID">
-                    <Form.Label>Class Code</Form.Label>
+                    <Form.Label for="classCode">Class Code</Form.Label>
                     <Form.Control
                       type="text"
                       name="classID"
+                      id = "classCode"
                       required
                       onChange={this.handleClassInput}
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="title">
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label for="title">Name</Form.Label>
                     <Form.Control
                       type="text"
                       name="title"
+                      id = "title"
                       required
                       onChange={this.handleClassInput}
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="description">
-                    <Form.Label>Description</Form.Label>
+                    <Form.Label for="description">Description</Form.Label>
                     <Form.Control
-                       as="textarea"
-                    
-                       style={{ height: '70px' }}
+                      id = "description"
+                      as="textarea"
+                      style={{ height: '70px' }}
                       name="description"
                       maxLength= "124"
                       required
@@ -191,45 +193,49 @@ export default class ClassNew extends Component {
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="section">
-                    <Form.Label>Section</Form.Label>
+                    <Form.Label for="section">Section</Form.Label>
                     <Form.Control
                       type="text"
                       name="section"
+                      id = "section"
                       required
                       onChange={this.handleClassInput}
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="session">
-                    <Form.Label>Session</Form.Label>
+                    <Form.Label for="session">Session</Form.Label>
                     <Form.Control
                       type="number"
                       name="session"
+                      id="session"
                       required
                       onChange={this.handleClassInput}
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="roomNumber">
-                    <Form.Label>Room Number</Form.Label>
+                    <Form.Label for="roomNumber">Room Number</Form.Label>
                     <Form.Control
                       type="text"
                       name="roomNumber"
+                      id = "roomNumber"
                       required
                       onChange={this.handleClassInput}
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="seats">
-                    <Form.Label>Seats</Form.Label>
+                    <Form.Label for="seats">Seats</Form.Label>
                     <Form.Control
                       type="number"
                       name="seats"
+                      id ="seats"
                       required
                       onChange={this.handleClassInput}
                     ></Form.Control>
                   </Form.Group>
                   <Form.Group id="meetingDates">
-                    <Form.Label>Meeting Day</Form.Label>
+                    <Form.Label for="meetingDay">Meeting Day</Form.Label>
                  
-                    <Form.Select   name="meetingDay" defaultValue=""  required
+                    <Form.Select   name="meetingDay" defaultValue=""  required id="meetingDay"
                       onChange={this.handleClassInput}>
         <option>Choose...</option>
         <option value="MWF">MWF</option>
