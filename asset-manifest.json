@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/studentportal/static/css/main.997be3e9.chunk.css",
-    "main.js": "/studentportal/static/js/main.969539c1.chunk.js",
-    "main.js.map": "/studentportal/static/js/main.969539c1.chunk.js.map",
+    "main.css": "/studentportal/static/css/main.69ca8b5a.chunk.css",
+    "main.js": "/studentportal/static/js/main.78201886.chunk.js",
+    "main.js.map": "/studentportal/static/js/main.78201886.chunk.js.map",
     "runtime-main.js": "/studentportal/static/js/runtime-main.5c16954b.js",
     "runtime-main.js.map": "/studentportal/static/js/runtime-main.5c16954b.js.map",
     "static/css/2.8988c0b9.chunk.css": "/studentportal/static/css/2.8988c0b9.chunk.css",
-    "static/js/2.9e51183a.chunk.js": "/studentportal/static/js/2.9e51183a.chunk.js",
-    "static/js/2.9e51183a.chunk.js.map": "/studentportal/static/js/2.9e51183a.chunk.js.map",
+    "static/js/2.841d55ad.chunk.js": "/studentportal/static/js/2.841d55ad.chunk.js",
+    "static/js/2.841d55ad.chunk.js.map": "/studentportal/static/js/2.841d55ad.chunk.js.map",
     "index.html": "/studentportal/index.html",
     "static/css/2.8988c0b9.chunk.css.map": "/studentportal/static/css/2.8988c0b9.chunk.css.map",
-    "static/css/main.997be3e9.chunk.css.map": "/studentportal/static/css/main.997be3e9.chunk.css.map",
-    "static/js/2.9e51183a.chunk.js.LICENSE.txt": "/studentportal/static/js/2.9e51183a.chunk.js.LICENSE.txt",
+    "static/css/main.69ca8b5a.chunk.css.map": "/studentportal/static/css/main.69ca8b5a.chunk.css.map",
+    "static/js/2.841d55ad.chunk.js.LICENSE.txt": "/studentportal/static/js/2.841d55ad.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/studentportal/static/media/fontawesome-webfont.f691f37e.woff",
     "static/media/logo-nav.2c59ed9d.png": "/studentportal/static/media/logo-nav.2c59ed9d.png",
     "static/media/logo001a.cbd003c7.png": "/studentportal/static/media/logo001a.cbd003c7.png"
@@ -19,8 +19,8 @@
   "entrypoints": [
     "static/js/runtime-main.5c16954b.js",
     "static/css/2.8988c0b9.chunk.css",
-    "static/js/2.9e51183a.chunk.js",
-    "static/css/main.997be3e9.chunk.css",
-    "static/js/main.969539c1.chunk.js"
+    "static/js/2.841d55ad.chunk.js",
+    "static/css/main.69ca8b5a.chunk.css",
+    "static/js/main.78201886.chunk.js"
   ]
 }
