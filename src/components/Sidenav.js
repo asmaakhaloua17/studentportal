@@ -113,12 +113,13 @@ export default class Sidenav extends Component {
         
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
+              <Nav.Link>
                 <Link
                   to={`/` + this.state.dashboardlink + `/` + this.props.euid}
-                  className="nav-link-selected"
+                 
                 >
                   Dashboard
-                </Link>
+                </Link></Nav.Link>
 
                 <NavDropdown title="Classes" id="basic-nav-dropdown">
                   {listclasses}
@@ -126,10 +127,10 @@ export default class Sidenav extends Component {
                 <NavDropdown title="Assignments" id="basic-nav-dropdown2">
                   {listassignments}
                 </NavDropdown>
-
+                <Nav.Link>
                 <Link to={`/`} className="nav-link">
                   Attendance
-                </Link>
+                </Link></Nav.Link>
                 <Link to={`/`} className="nav-link-logout">
                   Logout
                 </Link>

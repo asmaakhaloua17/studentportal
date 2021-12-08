@@ -25,6 +25,7 @@ export default class Register extends Component {
         passwordConfirm: "",
         fullName: "",
         euid: "",
+        role:"student"
       },
       dateOfBirthValid: false,
       passwordValid: false,
@@ -54,6 +55,7 @@ export default class Register extends Component {
           fullName: this.state.uFullName,
           dateofbirth: this.state.uDateOfBirth,
           password: hashpassword,
+          role:"student"
         })
           .then(() => {
           
