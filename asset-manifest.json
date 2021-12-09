@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/studentportal/static/css/main.69ca8b5a.chunk.css",
-    "main.js": "/studentportal/static/js/main.2c9d788a.chunk.js",
-    "main.js.map": "/studentportal/static/js/main.2c9d788a.chunk.js.map",
+    "main.js": "/studentportal/static/js/main.d4fe89b8.chunk.js",
+    "main.js.map": "/studentportal/static/js/main.d4fe89b8.chunk.js.map",
     "runtime-main.js": "/studentportal/static/js/runtime-main.5c16954b.js",
     "runtime-main.js.map": "/studentportal/static/js/runtime-main.5c16954b.js.map",
     "static/css/2.8988c0b9.chunk.css": "/studentportal/static/css/2.8988c0b9.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.8988c0b9.chunk.css",
     "static/js/2.841d55ad.chunk.js",
     "static/css/main.69ca8b5a.chunk.css",
-    "static/js/main.2c9d788a.chunk.js"
+    "static/js/main.d4fe89b8.chunk.js"
   ]
 }
