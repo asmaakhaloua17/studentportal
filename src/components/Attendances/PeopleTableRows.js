@@ -43,6 +43,8 @@ export default class PeopleTableRows extends Component {
         this.state.peoplesList.map(item => 
             <tr>
                 <td>{item}</td>
+                <td></td>
+                <td>Student</td>
             </tr>
         )
     );

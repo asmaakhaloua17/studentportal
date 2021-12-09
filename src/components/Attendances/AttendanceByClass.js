@@ -104,7 +104,7 @@ export default class AttendanceByClass extends Component {
                 </Table>
             </Col>
             <Col lg={{ span: 4 , offset: 1 }} md={12}>
-                <Card>
+                <Card  style={{'padding': '0px 10px'}}>
                 <h4 className="mb-2 mt-2">Attendance Count</h4>
                   <h5>Present</h5>
                   <ProgressBar now={(pres/rec) * 100} label={pres} className="mb-2"/>

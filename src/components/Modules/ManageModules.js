@@ -163,7 +163,7 @@ export default class ManageModules extends Component {
                 <td>{module_item.moduleID}</td>
                 <td>{module_item.classID}</td>
                 <td>{module_item.title}</td>
-                <td width="37%">
+                <td width="41%">
                   {" "}
                   <Button
                     variant="secondary class-more-btn"

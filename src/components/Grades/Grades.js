@@ -125,7 +125,7 @@ export default class Grades extends Component {
 
             </Col>
             <Col lg={{ span: 4 , offset: 1 }} md={12}>
-                <Card>
+                <Card style={{'padding': '0px 10px'}}>
                 <h4 className="mb-2 mt-2">Grade Distribution</h4>
                   <h5>A</h5>
                   <ProgressBar now={(numA/gradesCount) * 100} label={numA} className="mb-2"/>

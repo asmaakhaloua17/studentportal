@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import {
   Table,
-  DropdownButton,
-  Dropdown,
+  Card, ProgressBar,
   Button,
   Form,
   Container,
@@ -12,7 +11,9 @@ import {
 import "../../firebase";
 import { getDatabase, ref, get, child, set } from "firebase/database";
 import Sidenav from "../Sidenav";
-
+let pres = 0;
+let abs = 0;
+let rec = 0;
 export default class RollCall extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,10 @@ export default class RollCall extends Component {
       teacherID: this.props.match.params.teacherID,
       hidefeedback: "none",
       classList:[],
-      firstName :""
+      firstName :"",
+      pres : 0,
+      abs: 0,
+      rec :0
     };
   }
  //method to update the state variables with the user selection
@@ -142,6 +146,45 @@ return firstName;
       .catch((error) => {
         console.error(error);
       });
+
+
+       // get attendances
+ 
+this.setState({ pres: 0 });
+this.setState({ abs: 0 });
+this.setState({ rec: 0 });
+       get(child(dbRef, "attendances/" +  this.state.classID ))
+       .then(attend => {
+           if (attend.exists()) {
+               pres = 0;
+               abs = 0;
+               rec = 0;
+               attend.forEach(item => {
+                   let itemVal = item.val();
+                 //  attendList.push(itemVal);
+                   console.log("attendances:");
+                
+                   if(itemVal.status == "Present" ){ 
+                     pres++;
+                   }
+                   else{
+                     abs++;
+                   }
+                   rec++;
+               });
+               
+               this.setState({ pres: pres });
+               this.setState({ abs: abs });
+               this.setState({ rec: rec });
+           } 
+           else {
+               console.log("No attendances found");
+           }
+       }, {
+           onlyOnce: true
+       }).catch(error => {
+           console.log(error);
+       });
     
   }
 
@@ -178,7 +221,7 @@ return firstName;
                   </Form.Group>
                   
                
-        <Table striped bordered hover size="sm" >
+        <Table striped bordered hover size="sm" style={{visibility: this.state.classID ? 'visible' : 'hidden' }}>
           <thead>
             <tr>
           
@@ -219,9 +262,19 @@ return firstName;
           </tbody>
         </Table>
       </div>
-      </div>
+      </div> 
+   
+      <Card style={{'padding': '0px 10px',visibility: this.state.classID ? 'visible' : 'hidden' }}>
+   
+                <h4 className="mb-2 mt-2">Attendance Count</h4>
+                  <h5>Present</h5>
+                  <ProgressBar now={(pres/rec) * 100} label={pres} className="mb-2"/>
+                  <h5>Absent</h5>
+                  <ProgressBar now={(abs/rec) * 100} label={abs} className="mb-2"/>
+                </Card>
       </Col>
       </Row>
+     
         </Container>
       </div>
     );

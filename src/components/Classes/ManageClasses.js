@@ -175,7 +175,7 @@ export default class ManageClasses extends Component {
               <tr>
                 <td>{class_item.classID}</td>
                 <td>{class_item.name}</td>
-                <td width="37%">
+                <td width="41%">
                   {" "}
                   <Button
                     variant="primary class-more-btn"

@@ -52,7 +52,7 @@ export default class ClassItem extends Component {
             this.state.classList.map((class_item) =>
                    <div>
                 
-                <Card style={{ width: '18rem','marginRight': '20px' }}>
+                <Card style={{ width: '18rem','marginRight': '20px','margin-top': '10px'}}>
                   
   <Card variant="top" alt="Class" className="class_img" Style={"Background-color:"+class_item.classColor} />
   <Card.Body>

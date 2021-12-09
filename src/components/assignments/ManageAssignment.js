@@ -193,7 +193,7 @@ export default class ManageAssignment extends Component {
                 <td>{assignment_item.assignmentID}</td>
                 <td>{assignment_item.classID}</td>
                 <td>{assignment_item.title}</td>
-                <td width="37%">
+                <td width="41%">
                   {" "}
                   <Button
                     variant="secondary class-more-btn"
